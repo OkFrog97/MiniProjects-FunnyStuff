@@ -37,4 +37,17 @@ class BJ_Hand (cards.Hand):
             in not card.value:
                 return None
         #Sum points, Ace = 1;
+        t = 0
+        for card in self.cards:
+            t += card.value
+        #Check Ace in player hand
+        contains_ace = False
+        for card in self.cards:
+            if card.value == BJ_Card.ACE_VALUE:
+                contains_ace = True
+        #If Player Hand have Ace and score <= 11 then Ace = 11
+        if contains_ace and t <= 11:
+            t+=1o
+        return t
         
+            
