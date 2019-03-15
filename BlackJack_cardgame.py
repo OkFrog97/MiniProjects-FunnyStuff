@@ -15,7 +15,9 @@ class BJ_Card (cards.Card):
         return V
 
 class BJ_Deck (cards.Deck):
-    '''BlackJack deck'''
+    '''
+    BlackJack deck.
+    '''
     def populate (self):
         for suit in BJ_Card.SUITS:
             for rank in BJ_Card.RANKS:
@@ -49,5 +51,23 @@ class BJ_Hand (cards.Hand):
         if contains_ace and t <= 11:
             t+=1o
         return t
+    def is_busted(self):
+        return self.total > 21
+    
+class BJ_Player (BJ_Hand):
+    '''
+    Black_Jack player.
+    '''
+    def is_hitting(self):
+        response = games.ask_yes_no('\n {}, eche cartishku? (Y/N): '.format(self.name))
+        return response == 'y'
+    def bust(self):
+        print (self.name, 'ups...perebral.')
+        self.lose()
+    def lose(self):
+        print (self.name, 'proigral. Nichego, bratok, esche povezet.')
+    def win(self):
+        print (self.name, 'wiigral, zoebis, krasava')
+    def push(self):
+        print(self.name, 'op, nihuia, nichia, vnature! Nado povtorit!')
         
-            
