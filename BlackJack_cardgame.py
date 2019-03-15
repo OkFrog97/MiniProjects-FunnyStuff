@@ -14,9 +14,15 @@ class BJ_Card (cards.Card):
             v = None
         return V
 
-class BJ_Deck (cards.Hand):
+class BJ_Deck (cards.Deck):
     '''BlackJack deck'''
     def populate (self):
         for suit in BJ_Card.SUITS:
             for rank in BJ_Card.RANKS:
                 self.cards.append(BJ_Card(rank, suit))
+
+class BJ_Hand (cards.Hand):
+    def __init__(self, name):
+        cards.Hand.__init__(self) #In book: super(BJ_Hand, self).__init__()
+        self.name = name
+        
