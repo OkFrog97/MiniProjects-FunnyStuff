@@ -79,3 +79,14 @@ class BJ_Dealer (BJ_Hand):
         def flip_first_Card(self):
             first_card = self.card[0]
             first_card.flip()
+class BJ_Game ():
+    def __init__ (self, names):
+        self.players = []
+        for name in names:
+            player = BJ_PLayer (name)
+            self.players.append(player)
+        self.dealer = BJ_Dealer('Dealer')
+        self.deck = BJ_Deck()
+        self.populate()
+        self.shuffle()
+    
