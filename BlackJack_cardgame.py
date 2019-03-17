@@ -79,6 +79,7 @@ class BJ_Dealer (BJ_Hand):
         def flip_first_Card(self):
             first_card = self.card[0]
             first_card.flip()
+
 class BJ_Game ():
     def __init__ (self, names):
         self.players = []
@@ -89,4 +90,49 @@ class BJ_Game ():
         self.deck = BJ_Deck()
         self.populate()
         self.shuffle()
-    
+    @property
+    def still_playing(self):
+        sp = []
+        for player in self.players:
+            if not player.is_busted():
+                sp.append(player)
+        return sp
+    def __additional_Cards():
+        while not player.is_busted() and player.is_hitting():
+            self.deck.deal([player])
+            print (player)
+            if player.is_busted():
+                player.bust()
+    def play(self):
+        #Give 2 cards for all players.
+        self.deck.deal(self.players + [self.dealer], per_hand = 2)
+        self.dealer.flip_first_card()#first diller card flip
+        for player in self.players:
+            print (player)
+        print(self.dealer)
+        for player in self.players:
+            self.__additional_cards(player)
+        self.dealer.flip_first_card()
+        if not self.still_playing:
+            print (self.dealer)
+        else:
+            print(self.dealer)
+            self.__additional_cards(self.dealer)
+            if self.dealer.is_busted():
+                for player in self.still_playing:
+                    player.win()
+                else:
+                    for player in self.still_playing:
+                        if player.total > self.dealer.total:
+                            player.win()
+                        elif player.total < self.dealer.total:
+                            player.lose()
+                        else:
+                            player.push()
+        for player in self.players:
+            player.clear()
+        self.dealer.clear()
+        
+        if not self.still_playing:
+            print(self.dealer)
+           
