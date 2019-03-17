@@ -34,7 +34,7 @@ class Hand:
     def add (self, card):
         self.cards.append(card)
     def give (self, card, other_hand):
-        self.cardds.remove(card)
+        self.cards.remove(card)
         other_hand.add(card)
     
 class Deck (Hand):
@@ -43,7 +43,7 @@ class Deck (Hand):
     '''
     def populate (self):
         for suit in Card.SUITS:
-            for rank in card.RANKS:
+            for rank in Card.RANK:
                 self.add(Card(rank, suit))
     def shuffle (self):
         import random
@@ -51,9 +51,8 @@ class Deck (Hand):
     def deal (self, hands, per_hand = 1):
         for rounds in range (per_hand):
             for hand in hands:
-                if self.card:
+                if self.cards:
                     top_card = self.cards [0]
                     self.give (top_card, hand)
                 else:
                     print ('Cards is over')
-    

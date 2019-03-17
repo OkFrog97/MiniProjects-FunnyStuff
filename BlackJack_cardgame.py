@@ -1,13 +1,13 @@
 import BaseCardsClasses_from_Douson_book as cards 
 
-import PlayerClass_from_Douson_book as games
+from PlayerClass_from_Douson_book import Player as games
 
 class BJ_Card (cards.Card):
     ACE_VALUE = 1
     @property
     def value (self):
         if self.is_face_up: #if True
-            v = BJ_Card.RANKS.index(self.rank) + 1
+            v = BJ_Card.RANK.index(self.rank) + 1
             if v > 10:
                 v = 10
         else:
@@ -20,7 +20,7 @@ class BJ_Deck (cards.Deck):
     '''
     def populate (self):
         for suit in BJ_Card.SUITS:
-            for rank in BJ_Card.RANKS:
+            for rank in BJ_Card.RANK:
                 self.cards.append(BJ_Card(rank, suit))
 
 class BJ_Hand (cards.Hand):
@@ -28,7 +28,7 @@ class BJ_Hand (cards.Hand):
         cards.Hand.__init__(self) #In book: super(BJ_Hand, self).__init__()
         self.name = name
     def __str__(self):
-        rep = self.name + ':\t' + super((BJ_Hand, self).__str__()
+        rep = self.name + ':\t' + super((BJ_Hand, self).__str__())
         if self.total:
             rep += '({})'.format(str(self.total))
         return rep
@@ -36,7 +36,7 @@ class BJ_Hand (cards.Hand):
     def total(self):
         #if one of card value = None then all values = None; Чего, блеать?
         for card in self.cards:
-            in not card.value:
+            if not card.value:
                 return None
         #Sum points, Ace = 1;
         t = 0
@@ -49,7 +49,7 @@ class BJ_Hand (cards.Hand):
                 contains_ace = True
         #If Player Hand have Ace and score <= 11 then Ace = 11
         if contains_ace and t <= 11:
-            t+=1o
+            t += 10
         return t
     def is_busted(self):
         return self.total > 21
@@ -76,7 +76,7 @@ class BJ_Dealer (BJ_Hand):
         return self.total < 17
     def bush(self):
         print (self.name, 'Malen\'ko perebral.')
-        def flip_first_Card(self):
+        def flip_first_card(self):
             first_card = self.card[0]
             first_card.flip()
 
@@ -84,12 +84,12 @@ class BJ_Game ():
     def __init__ (self, names):
         self.players = []
         for name in names:
-            player = BJ_PLayer (name)
+            player = BJ_Player (name)
             self.players.append(player)
         self.dealer = BJ_Dealer('Dealer')
         self.deck = BJ_Deck()
-        self.populate()
-        self.shuffle()
+        self.deck.populate()
+        self.deck.shuffle()
     @property
     def still_playing(self):
         sp = []
@@ -134,10 +134,10 @@ class BJ_Game ():
         self.dealer.clear()
 
 def main():
-    print ('\t\tVelkom to rashen Chernsii Vanek, epta')
+    print ('\t\tVelkom to rashen Chernii Vanek, epta (Russian Black Jack without Bender Rodriges).')
     names = []
-    number = games.ask_number("Skolko pacanov igraet? (1-7) ", low = 1, hight = 8)
-    for i in range(numbers):
+    number = games.ask_number("Skolko pacanov igraet? (1-7) ", low = 1, high = 8)
+    for i in range(number):
         name = input('Kak zvat bratan?: ')
         names.append(name)
         print()
