@@ -132,7 +132,22 @@ class BJ_Game ():
         for player in self.players:
             player.clear()
         self.dealer.clear()
-        
-        if not self.still_playing:
-            print(self.dealer)
-           
+
+def main():
+    print ('\t\tVelkom to rashen Chernsii Vanek, epta')
+    names = []
+    number = games.ask_number("Skolko pacanov igraet? (1-7) ", low = 1, hight = 8)
+    for i in range(numbers):
+        name = input('Kak zvat bratan?: ')
+        names.append(name)
+        print()
+    game = BJ_Game(names)
+    again = None
+    while again != 'n':
+        game.play()
+        again = games.ask_yes_no('Esche razok?')
+        main()
+    input('Jmi Entet chtobi exit.')
+
+if __name__ == '__main__':
+    main()    
