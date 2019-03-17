@@ -67,7 +67,15 @@ class BJ_Player (BJ_Hand):
     def lose(self):
         print (self.name, 'proigral. Nichego, bratok, esche povezet.')
     def win(self):
-        print (self.name, 'wiigral, zoebis, krasava')
+        print (self.name, 'wiigral, zoebis, krasava.')
     def push(self):
         print(self.name, 'op, nihuia, nichia, vnature! Nado povtorit!')
-        
+
+class BJ_Dealer (BJ_Hand):
+    def is_hitting(self):
+        return self.total < 17
+    def bush(self):
+        print (self.name, 'Malen\'ko perebral.')
+        def flip_first_Card(self):
+            first_card = self.card[0]
+            first_card.flip()
