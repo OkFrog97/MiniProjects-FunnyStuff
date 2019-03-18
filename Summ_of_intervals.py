@@ -37,29 +37,13 @@ def sum_of_intervals(intervals):
         return False
     
 def union_intervals (interval1, interval2):
-    '''
-    ЕСЛИ А.начало меньше либо равно Б.концу И А.конец больше либо равен Б.началу
-    ТО
-        ЕСЛИ А.начало меньше либо равно Б.начало
-            Пересекающийся интервал += А. начало
-        ИНАЧЕ
-            Пересекающийся интервал += Б.начало
-        ЕСЛИ А.конец больше либо равен Б. конец            
-            Пересекающийся интервал += А.конец
-        ИНАЧЕ
-            Пересекающийся интервал += Б.конец
-    ИНАЧЕ
-        ЛОЖЬ    
-    '''
     
     unated_int = []
-    
     if interval1[0] <= interval2[1] and interval1[1] >= interval2[0]:
         if interval1[0] <= interval2[0]:
             unated_int.append(interval1[0])
         else:
             unated_int.append(interval2[0])
-        
         if interval1[1] >= interval2[1]:
             unated_int.append(interval1[1])
         else:
@@ -67,3 +51,20 @@ def union_intervals (interval1, interval2):
     else:
         return False
     return unated_int
+
+def Unated_tests():
+    print ('Positive test, must return reseult:')
+    print (union_intervals ([1,5], [4, 8]))
+    print (union_intervals ([2,12], [9, 24]))
+    print (union_intervals ([7,15], [1, 8]))
+    print ('Negative tests, must return False:')
+    print (union_intervals ([1,5], [6, 8]))
+    print (union_intervals ([12,48], [4, 8]))
+ 
+def main():
+    Unated_tests()
+    input()
+
+if __name__ == '__main__':
+    main()
+    
