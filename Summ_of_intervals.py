@@ -13,7 +13,7 @@ def sum_of_intervals(intervals):
     
     #Разбираемся с интервалвами и псевдокодом
 
-    def peresek_intervals (interval1, interval2):
+def peresek_intervals (interval1, interval2):
     '''
     interval1 = [10, 11]
     interval2 = [7, 10]
