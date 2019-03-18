@@ -4,8 +4,8 @@ def sum_of_intervals(intervals):
     and returns the sum of all the interval lengths.
     Overlapping intervals should only be counted once.
     '''
-    answer = 0
-    for i in intervals:
-        answer += (i[1] - i[0])
+    answer = []
+    for i in set(intervals):
+        answer.append(i[1] - i[0])
 
-    return answer
+    return sum(answer)
