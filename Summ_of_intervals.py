@@ -5,8 +5,27 @@ def sum_of_intervals(intervals):
     Overlapping intervals should only be counted once.
     '''
     answer = []
+    intervals = list(set(intervals))
     
-    for i in set(intervals):
+    for i in range(len(intervals)):
+        for j in range (len(intervals)):
+            if i != j:
+                unated_int = []
+                if intervals[i][0] <= intervals[j][1] and intervals[i][1] >= intervals[j][0]: #Check intersection of segments.
+                    if intervals[i][0] <= intervals[j][0]:
+                        unated_int.append(intervals[i][0])
+                    else:
+                        unated_int.append(intervals[j][0])
+                    if intervals[i][1] >= intervals[j][1]:
+                        unated_int.append(intervals[i][1]
+                    else:
+                        unated_int.append(intervals[j][1]
+                    
+                    intervals.pop(i)
+                    intervals.pop(j)
+                    intervals.append(unated_int)
+                    
+    for i in intervals:
         answer.append(i[1] - i[0])
 
     return sum(answer)
