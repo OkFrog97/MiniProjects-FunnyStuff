@@ -2,9 +2,7 @@ def sum_of_intervals(intervals): #simple way
 	numbers = []
 	for interval in intervals:
 		for i in range (interval[0], interval[1]):
-			print (i)
 			numbers.append(i)
-		print (numbers)
 	return len(set(numbers))
 
 sum_of_intervals2 =lambda a:len(set.union(*(set(range(*i))for i in a))) #lambda hardway
