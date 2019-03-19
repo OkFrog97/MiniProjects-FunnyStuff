@@ -1,4 +1,21 @@
-def sum_of_intervals(intervals):
+def sum_of_intervals(intervals): #simple way
+	numbers = []
+	for interval in intervals:
+		for i in range (interval[0], interval[1]):
+			print (i)
+			numbers.append(i)
+		print (numbers)
+	return len(set(numbers))
+
+sum_of_intervals2 =lambda a:len(set.union(*(set(range(*i))for i in a))) #lambda hardway
+
+'''
+sum_of_intervals2 ручками:
+[(1, 4), (7, 10), (3, 5)]
+range(*i)for i in a это:
+[range(1, 4), range(7, 10), range(3, 5)]
+'''
+def sum_of_intervals3(intervals): #didn't work
     '''
     This function accepts an array of intervals, 
     and returns the sum of all the interval lengths.
@@ -35,7 +52,7 @@ def sum_of_intervals(intervals):
     return sum(answer)
  
 
-def sum_of_intervals2(intervals):
+def sum_of_intervals4(intervals): # didn't work
     '''
     This function accepts an array of intervals, 
     and returns the sum of all the interval lengths.
@@ -119,6 +136,11 @@ def main_test():
     print ((sum_of_intervals([(1, 5), (6, 10)])), 'should be 8')
     print ((sum_of_intervals([(1, 5), (1, 5)])), 'should be 4')
     print ((sum_of_intervals([(1, 4), (7, 10), (3, 5)])), 'should be 7')
+    print ('\t***LAMBDA TESTS***\n')
+    print ((sum_of_intervals2([(1, 5)])), 'should be 4')
+    print ((sum_of_intervals2([(1, 5), (6, 10)])), 'should be 8')
+    print ((sum_of_intervals2([(1, 5), (1, 5)])), 'should be 4')
+    print ((sum_of_intervals2([(1, 4), (7, 10), (3, 5)])), 'should be 7')
 
 def main():
     Unated_tests()
