@@ -5,6 +5,43 @@ def sum_of_intervals(intervals):
     Overlapping intervals should only be counted once.
     '''
     answer = []
+    good_intervals = intervals.copy()
+    bad_intervals = []
+   
+    
+    for i in intervals:
+        for j in intervals:
+            unated_int = []
+            if i[0] <= j[1] and i[1] >= j[0]: #Check intersection of segments.
+                if i[0] <= j[0]:
+                    unated_int.append(i[0])
+                else:
+                    unated_int.append(j[0])
+                if i[1] >= j[1]:
+                    unated_int.append(i[1])
+                else:
+                    unated_int.append(j[1])
+                    
+                bad_intervals.append(unated_int)
+            else:
+                if i not in bad_intervals:
+                    bad_intervals.append(i)
+    
+    print (good_intervals)
+    print (bad_intervals)                
+    for i in list(set(bad_intervals)):
+        answer.append(i[1] - i[0])
+
+    return sum(answer)
+ 
+
+def sum_of_intervals2(intervals):
+    '''
+    This function accepts an array of intervals, 
+    and returns the sum of all the interval lengths.
+    Overlapping intervals should only be counted once.
+    '''
+    answer = []
     intervals = list(set(intervals))
     
     for i in range(len(intervals)):
@@ -17,12 +54,10 @@ def sum_of_intervals(intervals):
                     else:
                         unated_int.append(intervals[j][0])
                     if intervals[i][1] >= intervals[j][1]:
-                        unated_int.append(intervals[i][1]
+                        unated_int.append(intervals[i][1])
                     else:
-                        unated_int.append(intervals[j][1]
-                    
-                    intervals.pop(i)
-                    intervals.pop(j)
+                        unated_int.append(intervals[j][1])
+
                     intervals.append(unated_int)
                     
     for i in intervals:
@@ -30,9 +65,7 @@ def sum_of_intervals(intervals):
 
     return sum(answer)
     
-    #Разбираемся с интервалвами и псевдокодом
-
-def peresek_intervals (interval1, interval2):
+def peresek_intervals (interval1, interval2): #Разбираемся с интервалвами и псевдокодом
     '''
     interval1 = [10, 11]
     interval2 = [7, 10]
@@ -80,10 +113,17 @@ def Unated_tests():
     print (union_intervals ([1,5], [6, 8]))
     print (union_intervals ([12,48], [4, 8]))
  
+def main_test():
+    print ('\t---MAIN FUNCTION TEST---\n')
+    print ((sum_of_intervals([(1, 5)])), 'should be 4')
+    print ((sum_of_intervals([(1, 5), (6, 10)])), 'should be 8')
+    print ((sum_of_intervals([(1, 5), (1, 5)])), 'should be 4')
+    print ((sum_of_intervals([(1, 4), (7, 10), (3, 5)])), 'should be 7')
+
 def main():
     Unated_tests()
+    main_test()
     input()
 
 if __name__ == '__main__':
     main()
-    
