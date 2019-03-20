@@ -76,9 +76,9 @@ class BJ_Dealer (BJ_Hand):
         return self.total < 17
     def bush(self):
         print (self.name, 'Malen\'ko perebral.')
-        def flip_first_card(self):
-            first_card = self.card[0]
-            first_card.flip()
+    def flip_first_card(self):
+        first_card = self.card[0]
+        first_card.flip()
 
 class BJ_Game ():
     def __init__ (self, names):
