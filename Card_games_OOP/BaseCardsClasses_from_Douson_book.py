@@ -25,7 +25,9 @@ class Hand:
         self.cards = []
     def __str__ (self):
         if self.cards: #Not empty = True or just nothing
-            rep = ''.join(i+'\t' if self.card.index(i) != len(self.cards) - 1 else i for i in self.cards)
+            rep = ''
+            for card in self.cards:
+                rep = str(card) + '\t'
         else:
             rep = '<empty>'
         return rep

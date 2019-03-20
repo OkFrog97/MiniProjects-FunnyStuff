@@ -12,7 +12,7 @@ class BJ_Card (cards.Card):
                 v = 10
         else:
             v = None
-        return V
+        return v
 
 class BJ_Deck (cards.Deck):
     '''
@@ -28,7 +28,7 @@ class BJ_Hand (cards.Hand):
         cards.Hand.__init__(self) #In book: super(BJ_Hand, self).__init__()
         self.name = name
     def __str__(self):
-        rep = self.name + ':\t' + super((BJ_Hand, self).__str__())
+        rep = self.name + ':\t' + super(BJ_Hand, self).__str__()
         if self.total:
             rep += '({})'.format(str(self.total))
         return rep
@@ -77,7 +77,7 @@ class BJ_Dealer (BJ_Hand):
     def bush(self):
         print (self.name, 'Malen\'ko perebral.')
     def flip_first_card(self):
-        first_card = self.card[0]
+        first_card = self.cards[0]
         first_card.flip()
 
 class BJ_Game ():
