@@ -74,12 +74,83 @@ class BJ_Player (BJ_Hand):
 class BJ_Dealer (BJ_Hand):
     def is_hitting(self):
         return self.total < 17
-    def bush(self):
-        print (self.name, 'Malen\'ko perebral.')
+    def bust(self):
+        print (self.name, 'Zdaiushii malen\'ko perebral. A vam fartit!')
     def flip_first_card(self):
         first_card = self.cards[0]
         first_card.flip()
 
+class BJ_Game(object):
+    """ A Blackjack Game. """
+    def __init__(self, names):      
+        self.players = []
+        for name in names:
+            player = BJ_Player(name)
+            self.players.append(player)
+
+        self.dealer = BJ_Dealer("Dealer")
+
+        self.deck = BJ_Deck()
+        self.deck.populate()
+        self.deck.shuffle()
+
+    @property
+    def still_playing(self):
+        sp = []
+        for player in self.players:
+            if not player.is_busted():
+                sp.append(player)
+        return sp
+
+    def __additional_cards(self, player):
+        while not player.is_busted() and player.is_hitting():
+            self.deck.deal([player])
+            print(player)
+            if player.is_busted():
+                player.bust()
+           
+    def play(self):
+        # deal initial 2 cards to everyone
+        self.deck.deal(self.players + [self.dealer], per_hand = 2)
+        self.dealer.flip_first_card()    # hide dealer's first card
+        for player in self.players:
+            print(player)
+        print(self.dealer)
+
+        # deal additional cards to players
+        for player in self.players:
+            self.__additional_cards(player)
+
+        self.dealer.flip_first_card()    # reveal dealer's first 
+
+        if not self.still_playing:
+            # since all players have busted, just show the dealer's hand
+            print(self.dealer)
+        else:
+            # deal additional cards to dealer
+            print(self.dealer)
+            self.__additional_cards(self.dealer)
+
+            if self.dealer.is_busted():
+                # everyone still playing wins
+                for player in self.still_playing:
+                    player.win()                    
+            else:
+                # compare each player still playing to dealer
+                for player in self.still_playing:
+                    if player.total > self.dealer.total:
+                        player.win()
+                    elif player.total < self.dealer.total:
+                        player.lose()
+                    else:
+                        player.push()
+
+        # remove everyone's cards
+        for player in self.players:
+            player.clear()
+        self.dealer.clear()
+          
+'''
 class BJ_Game ():
     def __init__ (self, names):
         self.players = []
@@ -97,13 +168,14 @@ class BJ_Game ():
             if not player.is_busted():
                 sp.append(player)
         return sp
-    def __additional_сards(self, player):
+    def __additional_cards(self, player):
         while not player.is_busted() and player.is_hitting():
             self.deck.deal([player])
             print (player)
             if player.is_busted():
                 player.bust()
-    def play(self):
+
+   def play(self):
         #Give 2 cards for all players.
         self.deck.deal(self.players + [self.dealer], per_hand = 2)
         self.dealer.flip_first_card()#first diller card flip
@@ -133,6 +205,8 @@ class BJ_Game ():
         for player in self.players:
             player.clear()
         self.dealer.clear()
+'''
+
 
 def main():
     print ('\t\tVelkom to rashen Chernii Vanek, epta (Russian Black Jack without Bender Rodriges).')
