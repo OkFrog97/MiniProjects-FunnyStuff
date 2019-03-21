@@ -8,12 +8,14 @@ class Card:
         self.rank = rank
         self.suit = suit
         self.is_face_up = face_up #card face up = True; card face down = False;
+    
     def __str__ (self):
         if self.is_face_up:
             rep = self.rank + self.suit
         else:
             rep = 'XX'
         return rep
+    
     def flip (self): #card flip
         self.is_face_up = not self.is_face_up
 
@@ -27,7 +29,7 @@ class Hand:
         if self.cards: #Not empty = True or just nothing
             rep = ''
             for card in self.cards:
-                rep = str(card) + '\t'
+                rep += str(card) + '\t'
         else:
             rep = '<empty>'
         return rep
