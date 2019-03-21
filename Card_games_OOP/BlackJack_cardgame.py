@@ -97,7 +97,7 @@ class BJ_Game ():
             if not player.is_busted():
                 sp.append(player)
         return sp
-    def __additional_Cards():
+    def __additional_сards(self, player):
         while not player.is_busted() and player.is_hitting():
             self.deck.deal([player])
             print (player)
@@ -110,9 +110,10 @@ class BJ_Game ():
         for player in self.players:
             print (player)
         print(self.dealer)
+        #Сдача дополнительных карт
         for player in self.players:
             self.__additional_cards(player)
-        self.dealer.flip_first_card()
+        self.dealer.flip_first_card() #Раскрывается первая карта дилера
         if not self.still_playing:
             print (self.dealer)
         else:
