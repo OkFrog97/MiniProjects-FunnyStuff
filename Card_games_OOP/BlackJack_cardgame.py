@@ -79,7 +79,7 @@ class BJ_Dealer (BJ_Hand):
     def flip_first_card(self):
         first_card = self.cards[0]
         first_card.flip()
-
+'''
 class BJ_Game(object):
     """ A Blackjack Game. """
     def __init__(self, names):      
@@ -149,8 +149,8 @@ class BJ_Game(object):
         for player in self.players:
             player.clear()
         self.dealer.clear()
-          
-'''
+'''      
+
 class BJ_Game ():
     def __init__ (self, names):
         self.players = []
@@ -161,6 +161,7 @@ class BJ_Game ():
         self.deck = BJ_Deck()
         self.deck.populate()
         self.deck.shuffle()
+    
     @property
     def still_playing(self):
         sp = []
@@ -168,6 +169,7 @@ class BJ_Game ():
             if not player.is_busted():
                 sp.append(player)
         return sp
+   
     def __additional_cards(self, player):
         while not player.is_busted() and player.is_hitting():
             self.deck.deal([player])
@@ -175,7 +177,7 @@ class BJ_Game ():
             if player.is_busted():
                 player.bust()
 
-   def play(self):
+    def play(self):
         #Give 2 cards for all players.
         self.deck.deal(self.players + [self.dealer], per_hand = 2)
         self.dealer.flip_first_card()#first diller card flip
@@ -205,7 +207,7 @@ class BJ_Game ():
         for player in self.players:
             player.clear()
         self.dealer.clear()
-'''
+
 
 
 def main():
