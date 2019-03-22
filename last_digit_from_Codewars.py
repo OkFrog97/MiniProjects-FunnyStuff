@@ -8,13 +8,7 @@ def last_digit(n1, n2):
     >last_digit (5, 3) # 5**3=125;
     >5
     '''
-    if n2 == 0:
-        return 1
-    
-    elif int(str(n1)[len(str(n1))-1]) in [0, 1, 5, 6] or n2 == 1: #if last n1 digit in list return it cose answer is not change.
-        return int(str(n1)[len(str(n1))-1])
-    else:
-        return int(str(n1**(n2%4))[len(str(n1**(n2%4)))-1]) #Remainder of division is elevating number for n1 (or last n1 digital) which can show last n1**n2 digital.
+    return pow(n1, n2, 10)
     
 if __name__ == '__main__':
     main()
