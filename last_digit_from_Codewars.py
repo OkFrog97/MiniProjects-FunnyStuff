@@ -8,7 +8,9 @@ def last_digit(n1, n2):
     >last_digit (5, 3) # 5**3=125;
     >5
     '''
-    return pow(n1, n2, 10)
+    last_digit = [int(str(int(str(n1)[-1])**i)[-1]) for i in range (1,5)]
+    return 1 if n2 ==0 else last_digit[(n2%4)-1]
+
     
 if __name__ == '__main__':
     main()
