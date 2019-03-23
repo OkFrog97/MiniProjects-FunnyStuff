@@ -85,7 +85,7 @@ class War_Game ():
         #Место для повышения ставок
         winner = [None]
         for player in self.players:
-            if self.player.total >= winner[0].total:
+            if player.total >= winner[0].total: #danger zone
                 winner.pop()
                 winner.append (self.player)
         for player in self.players:
@@ -96,76 +96,27 @@ class War_Game ():
             else:
                 player.lose()            
         
-        
-        
-        
-        
-        
-        
-        '''
-        self.dealer.flip_first_card()#first diller card flip
-        '''
-        
-        
-        for player in self.players:
-            print (player)
-        #Сдача дополнительных карт
-        for player in self.players:
-            self.__additional_cards(player)
-        
-        self.dealer.flip_first_card() #Раскрывается первая карта дилера
-        
-        if not self.still_playing:
-            print (self.dealer)
-        else:
-            print(self.dealer)
-            self.__additional_cards(self.dealer)
-            
-            if self.dealer.is_busted():
-                for player in self.still_playing:
-                    player.win()
-            else:
-                for player in self.still_playing:
-                    if player.total > self.dealer.total:
-                        player.win()
-                    elif player.total < self.dealer.total:
-                        player.lose()
-                    else:
-                        player.push()
-        
         for player in self.players:
             player.clear()
-        self.dealer.clear()
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #----------------------MAIN----------------------
 def main ():
+    print('\t---Карточная игра---\n\t\t--ВОЙНА--')
+    print('Играть могут от двух до шести игроков.\nКаждому игроку выдается по одной карте.\nПобеждает тот игрок, чья карта имеешь больший номинал.\n')
+    names = []
+    number = int(input('Сколько игроков играет? '))
+    for i in range(number):
+        name = input('Введите имя игрока{}: '.format(i+1)
+        names.append(name)
+        print()
+    game = War_Game(names)
+    again = None
+    while again != 'n':
+        game.play()
+        again = unit.ask_yes_no('Esche razok?')
+        main()
+    input('Нажмите ENTER для выхода.')
 
-    qwe = War_Deck ()
-    qwe.populate()
-    print (qwe)
-    
-    input()
     
 if __name__ == '__main__':
     main ()
