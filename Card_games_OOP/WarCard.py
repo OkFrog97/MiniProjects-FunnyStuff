@@ -115,12 +115,65 @@ class War_Game ():
         for player in self.players: #Revers card. Переворачиваем карту рубашкой вверх. 
             player.flip_first_card()
             player.account.withdraw(5, self.bank)
-            print ('Игрок {0};\n\tв кошельке {1} очков;'.format(player, player.account.how_much()))
-        
-        
-        
-        
+            print ('Игрок {0}\nКошелек: \t{1};'.format(player, player.account.how_much()))
         print ('Кто рискнет повысить ставку?')#Место для повышения ставок
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        is_bet_made = None
+        bet = None
+        for player in self.players:
+            
+            if is_bet_made == None:
+                answer = input ('Игрок, повышаем ставку на? (0/n - отказаться от повышения ставки) ')
+                if answer != '0' or answer.lover() != 'n':
+                    try:
+                        bet = int (answer)
+                        is_bet_made = True
+                        player.account.withdraw(bet, bank)
+                    except ValueError:
+                        print ('Вы ввели не сумму ставки.')
+                        player.lose() #удалить игрока из игры?
+            
+            elif is_bate_made and bet != None:
+                answer = input ('Сделана ставка {}, введите ее сумму или повышайте.'.format(bet))
+                if int(answer) < bet or player.account.is_enough(answer) == False:
+                    print('Вы ввели меньшую сумму или вам не хватает средств для поддержания ставки')
+                    player.lose() #player kick again
+                elif answer > bet:
+                    bet = answer
+                    player.account.withdraw(bet, bank)
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         for player in self.players:
             player.flip_first_card()
             print (player)
