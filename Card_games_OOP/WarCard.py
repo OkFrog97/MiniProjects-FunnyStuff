@@ -56,7 +56,7 @@ class War_Deck (cards.Deck):
                 self.cards.append(War_card(rank, suit))
 
                 
-class War_Player (unit):
+class War_Player (War_Hand):
     def lose(self):
         print (self.name, ' прогирал.')
         
@@ -65,6 +65,10 @@ class War_Player (unit):
         
     def push(self):
         print(self.name, ' ничья.')
+    
+    def flip_first_card(self):
+        first_card = self.cards[0]
+        first_card.flip() 
 
         
 class War_Game ():
@@ -81,13 +85,15 @@ class War_Game ():
         #Give 1 cards for all players.
         self.deck.deal(self.players, per_hand = 1)
         for player in self.players: #Revers card. Переворачиваем карту рубашкой вверх. 
-            self.player.flip_first_card()
+            player.flip_first_card()
         #Место для повышения ставок
-        winner = [None]
+        for player in self.players:
+            player.flip_first_card()
+        winner = [self.players[0]] #Юзаем стэк, по умолчанию вставляем первого игрока.
         for player in self.players:
             if player.total >= winner[0].total: #danger zone
                 winner.pop()
-                winner.append (self.player)
+                winner.append (player)
         for player in self.players:
             if 1 < len(winner) and player in winner:
                player.push()
@@ -101,19 +107,19 @@ class War_Game ():
 
 #----------------------MAIN----------------------
 def main ():
-    print('\t---Карточная игра---\n\t\t--ВОЙНА--')
+    print('\t---Карточная игра---\n\t\t-ВОЙНА-')
     print('Играть могут от двух до шести игроков.\nКаждому игроку выдается по одной карте.\nПобеждает тот игрок, чья карта имеешь больший номинал.\n')
     names = []
-    number = int(input('Сколько игроков играет? '))
+    number = int(input('Сколько игроков играет?(2-6) '))
     for i in range(number):
-        name = input('Введите имя игрока{}: '.format(i+1)
+        name = input('Введите имя игрока №{}: '.format(i+1))
         names.append(name)
         print()
     game = War_Game(names)
     again = None
     while again != 'n':
         game.play()
-        again = unit.ask_yes_no('Esche razok?')
+        again = input('Сыграть еще раз? (y/n) ').lower()
         main()
     input('Нажмите ENTER для выхода.')
 
