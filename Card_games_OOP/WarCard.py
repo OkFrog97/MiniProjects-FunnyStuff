@@ -10,7 +10,7 @@ class War_Account ():
     def __init__ (self, money = 0):
         self.money = money
      
-    def is_enough (self, sum_to_trnasfer): #chek money in purse.
+    def is_enough (self, sum_to_transfer): #chek money in purse.
         if self.money - sum_to_transfer >= 0:
             return True
         else:
@@ -18,7 +18,8 @@ class War_Account ():
     
     def withdraw (self, sum_to_transfer, other_account): #give money from this object and give it for other_account(object).
         if self.is_enough (sum_to_transfer):
-            other_account.recipt (sum_to_transfer)
+            other_account.reciept (sum_to_transfer)
+            self.money -= sum_to_transfer
         else:
             print ("Недостаточно денежных средств.")
     
@@ -114,7 +115,7 @@ class War_Game ():
         for player in self.players: #Revers card. Переворачиваем карту рубашкой вверх. 
             player.flip_first_card()
             player.account.withdraw(5, self.bank)
-            print ('Игрок {1}:  в кошельке {2}\nКарта: {3}'.format()
+            print ('Игрок {0};\n\tв кошельке {1} очков;'.format(player, player.account.how_much()))
         
         
         
