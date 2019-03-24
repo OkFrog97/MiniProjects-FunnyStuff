@@ -29,8 +29,6 @@ class War_Hand (cards.Hand):
     
     def __str__(self):
         rep = self.name + ':\t' + super(War_Hand, self).__str__()
-        if self.total:
-            rep += '({})'.format(str(self.total))
         return rep
     
     @property
@@ -86,9 +84,11 @@ class War_Game ():
         self.deck.deal(self.players, per_hand = 1)
         for player in self.players: #Revers card. Переворачиваем карту рубашкой вверх. 
             player.flip_first_card()
-        #Место для повышения ставок
+            print (player)
+        print ('Кто рискнет?')#Место для повышения ставок
         for player in self.players:
             player.flip_first_card()
+            print (player)
         winner = [self.players[0]] #Юзаем стэк, по умолчанию вставляем первого игрока.
         for player in self.players:
             if player.total >= winner[0].total: #danger zone
@@ -105,24 +105,29 @@ class War_Game ():
         for player in self.players:
             player.clear()
 
-#----------------------MAIN----------------------
+
 def main ():
     print('\t---Карточная игра---\n\t\t-ВОЙНА-')
     print('Играть могут от двух до шести игроков.\nКаждому игроку выдается по одной карте.\nПобеждает тот игрок, чья карта имеешь больший номинал.\n')
     names = []
-    number = int(input('Сколько игроков играет?(2-6) '))
-    for i in range(number):
-        name = input('Введите имя игрока №{}: '.format(i+1))
-        names.append(name)
-        print()
-    game = War_Game(names)
-    again = True
-    while again:
-        game.play()
-        quit = input('Сыграть еще раз? (y/n) ')
-        if quit.lower() == 'n':
-            again = False
-        main()
+    
+    try:
+        number = int(input('Сколько игроков играет?(2-6) '))
+    except ValueError:
+        print ('Вы ввели не число.')
+        number = 0
+    if 2 <= number <= 6: 
+        for i in range(number):
+            name = input('Введите имя игрока №{}: '.format(i+1))
+            names.append(name)
+            print()
+        game = War_Game(names)
+        again = None
+        while again != 'n':
+            game.play()
+            again = input('Сыграть еще раз? (y/n) ')
+    else:
+        print ('Вы ввели некорретные данные. Игра будет приостановлена.')
     input('Нажмите ENTER для выхода.')
 
 if __name__ == '__main__':
