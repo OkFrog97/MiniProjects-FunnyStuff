@@ -67,8 +67,30 @@ class War_Player (War_Hand):
     def flip_first_card(self):
         first_card = self.cards[0]
         first_card.flip() 
-
+    
+    
+class War_Account ():
+    def __init__ (self):
+        money = 0
+        self.money = money
+     
+    def is_enough (self, sum_to_trnasfer):
+        if self.money - sum_to_transfer >= 0:
+            return True
+        else:
+            return False
+    
+    def withdraw (self, sum_to_transfer, other_account):
+        if self.is_enough (sum_to_transfer):
+            other_account.recipt (sum_to_transfer)
+        else:
+            print ("Недостаточно денежных средств.")
+    
+    def reciept (self, sum_for_transfer):
+        self.money += sum_for_transfer
         
+        
+           
 class War_Game ():
     def __init__ (self, names):
         self.players = []
