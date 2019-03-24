@@ -116,13 +116,14 @@ def main ():
         names.append(name)
         print()
     game = War_Game(names)
-    again = None
-    while again != 'n':
+    again = True
+    while again:
         game.play()
-        again = input('Сыграть еще раз? (y/n) ').lower()
+        quit = input('Сыграть еще раз? (y/n) ')
+        if quit.lower() == 'n':
+            again = False
         main()
     input('Нажмите ENTER для выхода.')
 
-    
 if __name__ == '__main__':
     main ()
