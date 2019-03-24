@@ -70,8 +70,7 @@ class War_Player (War_Hand):
     
     
 class War_Account ():
-    def __init__ (self):
-        money = 0
+    def __init__ (self, money = 0):
         self.money = money
      
     def is_enough (self, sum_to_trnasfer):
@@ -88,9 +87,11 @@ class War_Account ():
     
     def reciept (self, sum_for_transfer):
         self.money += sum_for_transfer
-        
-        
-           
+     
+    def how_mush (self):
+        return self.money
+
+
 class War_Game ():
     def __init__ (self, names):
         self.players = []
