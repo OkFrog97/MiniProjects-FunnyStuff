@@ -2,6 +2,32 @@ import BaseCardsClasses_from_Douson_book as cards
 
 from PlayerClass_from_Douson_book import Player as unit
 
+class War_Account ():
+    '''
+    Work witj bets.
+    Работа со ставками.
+    '''
+    def __init__ (self, money = 0):
+        self.money = money
+     
+    def is_enough (self, sum_to_trnasfer): #chek money in purse.
+        if self.money - sum_to_transfer >= 0:
+            return True
+        else:
+            return False
+    
+    def withdraw (self, sum_to_transfer, other_account): #give money from this object and give it for other_account(object).
+        if self.is_enough (sum_to_transfer):
+            other_account.recipt (sum_to_transfer)
+        else:
+            print ("Недостаточно денежных средств.")
+    
+    def reciept (self, sum_for_transfer): #Add money in purse.
+        self.money += sum_for_transfer
+     
+    def how_much (self):
+        return self.money
+
 
 class War_card (cards.Card):
     RANK = ('2','3','4','5','6','7','8','9','10','J','Q','K', 'A')
@@ -55,6 +81,8 @@ class War_Deck (cards.Deck):
 
                 
 class War_Player (War_Hand):
+    
+    account = War_Account (10)
     def lose(self):
         print (self.name, ' прогирал.')
         
@@ -67,29 +95,6 @@ class War_Player (War_Hand):
     def flip_first_card(self):
         first_card = self.cards[0]
         first_card.flip() 
-    
-    
-class War_Account ():
-    def __init__ (self, money = 0):
-        self.money = money
-     
-    def is_enough (self, sum_to_trnasfer):
-        if self.money - sum_to_transfer >= 0:
-            return True
-        else:
-            return False
-    
-    def withdraw (self, sum_to_transfer, other_account):
-        if self.is_enough (sum_to_transfer):
-            other_account.recipt (sum_to_transfer)
-        else:
-            print ("Недостаточно денежных средств.")
-    
-    def reciept (self, sum_for_transfer):
-        self.money += sum_for_transfer
-     
-    def how_mush (self):
-        return self.money
 
 
 class War_Game ():
@@ -101,14 +106,20 @@ class War_Game ():
         self.deck = War_Deck()
         self.deck.populate()
         self.deck.shuffle()
+        self.bank = War_Account ()
     
     def play(self):
         #Give 1 cards for all players.
         self.deck.deal(self.players, per_hand = 1)
         for player in self.players: #Revers card. Переворачиваем карту рубашкой вверх. 
             player.flip_first_card()
-            print (player)
-        print ('Кто рискнет?')#Место для повышения ставок
+            player.account.withdraw(5, self.bank)
+            print ('Игрок {1}:  в кошельке {2}\nКарта: {3}'.format()
+        
+        
+        
+        
+        print ('Кто рискнет повысить ставку?')#Место для повышения ставок
         for player in self.players:
             player.flip_first_card()
             print (player)
