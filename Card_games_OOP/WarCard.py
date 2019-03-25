@@ -136,20 +136,22 @@ class War_Game ():
         
         is_bet_made = None
         bet = None
-        for player in self.players:
-            
-            if is_bet_made == None:
+        
+        if is_bet_made == None:
+            for player in self.players:
                 answer = input ('Игрок, повышаем ставку на? (0/n - отказаться от повышения ставки) ')
                 if answer != '0' or answer.lover() != 'n':
                     try:
                         bet = int (answer)
-                        is_bet_made = True
                         player.account.withdraw(bet, bank)
+                        is_bet_made = True
+                        break
                     except ValueError:
                         print ('Вы ввели не сумму ставки.')
                         player.lose() #удалить игрока из игры?
             
-            elif is_bate_made and bet != None:
+        if is_bate_made:
+            for player in self.players:    
                 answer = input ('Сделана ставка {}, введите ее сумму или повышайте.'.format(bet))
                 if int(answer) < bet or player.account.is_enough(answer) == False:
                     print('Вы ввели меньшую сумму или вам не хватает средств для поддержания ставки')
