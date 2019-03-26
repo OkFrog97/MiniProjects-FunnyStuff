@@ -136,29 +136,34 @@ class War_Game ():
         
         is_bet_made = None
         bet = None
-        
-        if is_bet_made == None:
-            for player in self.players:
-                answer = input ('Игрок, повышаем ставку на? (0/n - отказаться от повышения ставки) ')
-                if answer != '0' or answer.lover() != 'n':
-                    try:
-                        bet = int (answer)
-                        player.account.withdraw(bet, bank)
-                        is_bet_made = True
-                        break
-                    except ValueError:
-                        print ('Вы ввели не сумму ставки.')
-                        player.lose() #удалить игрока из игры?
+        old_bet = 0
             
-        if is_bate_made:
-            for player in self.players:    
-                answer = input ('Сделана ставка {}, введите ее сумму или повышайте.'.format(bet))
-                if int(answer) < bet or player.account.is_enough(answer) == False:
-                    print('Вы ввели меньшую сумму или вам не хватает средств для поддержания ставки')
-                    player.lose() #player kick again
-                elif answer > bet:
-                    bet = answer
-                    player.account.withdraw(bet, bank)
+        while old_bet != bet:    
+            
+                for player in self.players:
+                    
+                    if is_bet_made == None:
+                        answer = input ('Игрок{}, повышаем ставку на? (0/n - отказаться от повышения ставки) '.format(player))
+                        if answer != '0' or answer.lover() != 'n' and player.account.is_enough(answer) != False:
+                            try:
+                                bet = int (answer)
+                                player.account.withdraw(bet, self.bank)
+                                is_bet_made = True
+                            except ValueError:
+                                print ('Вы ввели не сумму ставки.')
+                        elif player.account.is_enough(answer) == False:
+                            print ('Вам не хватает средств для ставки')
+            
+            
+                    if is_bet_made: 
+                        answer = int(input ('Сделана ставка {}, введите ее сумму или повышайте.'.format(bet)))
+                        if answer < bet or player.account.is_enough(answer) == False:
+                            print('Вы ввели меньшую сумму или вам не хватает средств для поддержания ставки')
+                            player.lose() #player kick again
+                        elif answer == bet:
+                            player.account.withdraw(bet, bank)
+                        elif bet > answer:
+                            bet, answer = old_bet, bet
             
         
         
@@ -179,9 +184,10 @@ class War_Game ():
         for player in self.players:
             player.flip_first_card()
             print (player)
+        
         winner = [self.players[0]] #Юзаем стэк, по умолчанию вставляем первого игрока.
         for player in self.players:
-            if player.total >= winner[0].total: #danger zone
+            if player.total >= winner[0].total: #danger zone! Не учтена ньчия!
                 winner.pop()
                 winner.append (player)
         for player in self.players:
