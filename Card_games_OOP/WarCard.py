@@ -83,7 +83,10 @@ class War_Deck (cards.Deck):
                 
 class War_Player (War_Hand):
     
-    account = War_Account (10)
+    def __init__(self, name):
+        War_Hand.__init__(self, name)
+        self.account = War_Account (10)
+    
     def lose(self):
         print (self.name, ' прогирал.')
         
@@ -112,11 +115,17 @@ class War_Game ():
     def play(self):
         #Give 1 cards for all players.
         self.deck.deal(self.players, per_hand = 1)
+        
+        
+        
+        
         for player in self.players: #Revers card. Переворачиваем карту рубашкой вверх. 
             player.flip_first_card()
+            print ('Кошелек игрока до: {}'.format(player.account.how_much()))
             player.account.withdraw(5, self.bank)
+            print ('Банк после: {}'.format(self.bank.how_much()))
             print ('Игрок {0}\nКошелек: \t{1};'.format(player, player.account.how_much()))
-        print ('Кто рискнет повысить ставку?')#Место для повышения ставок
+        print ('\nКто рискнет повысить ставку?\n')#Место для повышения ставок
         
         
         
@@ -141,30 +150,36 @@ class War_Game ():
         while old_bet != bet:    
             
                 for player in self.players:
-                    
+                  
                     if is_bet_made == None:
-                        answer = input ('Игрок{}, повышаем ставку на? (0/n - отказаться от повышения ставки) '.format(player))
-                        if answer != '0' or answer.lover() != 'n' and player.account.is_enough(answer) != False:
+                        answer = input ('Игрок {}, повышаем ставку на? (n - отказаться от повышения ставки) '.format(player))
+                        
+                        if  answer.lower() != 'n':
                             try:
                                 bet = int (answer)
-                                player.account.withdraw(bet, self.bank)
+                                player.account.withdraw(bet, self.bank) #А если не хватает денег?
                                 is_bet_made = True
+                                
                             except ValueError:
-                                print ('Вы ввели не сумму ставки.')
-                        elif player.account.is_enough(answer) == False:
-                            print ('Вам не хватает средств для ставки')
-            
-            
+                                print ('Вы ввели не чило.')
+                           
+                                                        
+                   
                     if is_bet_made: 
-                        answer = int(input ('Сделана ставка {}, введите ее сумму или повышайте.'.format(bet)))
+                        answer = int(input ('Игрок {0}, предыдущим игроком сделана ставка {1}, введите ее сумму или повышайте.'.format(player, bet)))
                         if answer < bet or player.account.is_enough(answer) == False:
                             print('Вы ввели меньшую сумму или вам не хватает средств для поддержания ставки')
                             player.lose() #player kick again
+                            self.players.pop(self.players.index(player))
                         elif answer == bet:
                             player.account.withdraw(bet, bank)
                         elif bet > answer:
                             bet, answer = old_bet, bet
+                    
+                  
             
+                if is_bet_made == None: #exit while cycle.
+                    old_bet = bet
         
         
         
@@ -180,7 +195,7 @@ class War_Game ():
         
         
         
-        
+        print('\n$$$БАНК$$$\n{}\n'.format(self.bank.how_much()))
         for player in self.players:
             player.flip_first_card()
             print (player)
@@ -194,7 +209,9 @@ class War_Game ():
             if 1 < len(winner) and player in winner:
                player.push()
             elif player in winner:
+                self.bank.withdraw(self.bank.how_much(), player.account)
                 player.win()
+                print ('В его кошельке {} монет!'.format (player.account.how_much()))
             else:
                 player.lose()            
         
