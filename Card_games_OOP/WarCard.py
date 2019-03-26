@@ -165,16 +165,18 @@ class War_Game ():
                            
                                                         
                    
-                    if is_bet_made: 
+                    elif is_bet_made: 
                         answer = int(input ('Игрок {0}, предыдущим игроком сделана ставка {1}, введите ее сумму или повышайте.'.format(player, bet)))
                         if answer < bet or player.account.is_enough(answer) == False:
                             print('Вы ввели меньшую сумму или вам не хватает средств для поддержания ставки')
                             player.lose() #player kick again
                             self.players.pop(self.players.index(player))
                         elif answer == bet:
-                            player.account.withdraw(bet, bank)
+                            player.account.withdraw(bet, self.bank)
+                            bet, answer = old_bet, bet
                         elif bet > answer:
                             bet, answer = old_bet, bet
+                            player.account.withdraw(bet, self.bank)
                     
                   
             
