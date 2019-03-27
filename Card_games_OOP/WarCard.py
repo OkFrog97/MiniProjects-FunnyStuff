@@ -115,16 +115,10 @@ class War_Game ():
     def play(self):
         #Give 1 cards for all players.
         self.deck.deal(self.players, per_hand = 1)
-        
-        
-        
-        
         for player in self.players: #Revers card. Переворачиваем карту рубашкой вверх. 
             player.flip_first_card()
-            print ('Кошелек игрока до: {}'.format(player.account.how_much()))
             player.account.withdraw(5, self.bank)
-            print ('Банк после: {}'.format(self.bank.how_much()))
-            print ('Игрок {0}\nКошелек: \t{1};'.format(player, player.account.how_much()))
+        print ('Ставки сделаны Банк: {}'.format(self.bank.how_much()))
         print ('\nКто рискнет повысить ставку?\n')#Место для повышения ставок
         
         
@@ -153,13 +147,11 @@ class War_Game ():
                   
                     if is_bet_made == None:
                         answer = input ('Игрок {}, повышаем ставку на? (n - отказаться от повышения ставки) '.format(player))
-                        
                         if  answer.lower() != 'n':
                             try:
                                 bet = int (answer)
                                 player.account.withdraw(bet, self.bank) #А если не хватает денег?
                                 is_bet_made = True
-                                
                             except ValueError:
                                 print ('Вы ввели не чило.')
                            
@@ -222,8 +214,19 @@ class War_Game ():
 
 
 def main ():
-    print('\t---Карточная игра---\n\t\t-ВОЙНА-')
-    print('Играть могут от двух до шести игроков.\nКаждому игроку выдается по одной карте.\nПобеждает тот игрок, чья карта имеешь больший номинал.\n')
+    hello_words = """
+                    ---Карточная игра---\n
+                           -ВОЙНА-\n
+    Играть могут от двух до шести игроков.
+    Каждому игроку выдается по одной карте.
+    И десять монет для того, что бы сделать ставки.
+    Побеждает тот игрок, чья карта имеешь больший номинал.
+    Он же забирает банк.
+    Рискнешь сыграть в слепую удачу?
+                  """
+
+    print(hello_words)
+    
     names = []
     
     try:
