@@ -121,60 +121,44 @@ class War_Game ():
         print ('Ставки сделаны Банк: {}'.format(self.bank.how_much()))
         print ('\nКто рискнет повысить ставку?\n')#Место для повышения ставок
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        #ХЕРНЯ ЭТО ВCЕ, ТУТ ВОТ ПО-ЛУЧШЕ
-        
-        '''
-        >>> players = ['Pharhad', 'Anya', 'Miron']
-        >>> bets = []
-        >>> while len(set(bets))!=1 or len(set(bets))!=0:
-	            for player in range (len(players)):
-		            if len (bets) == 0:
-			            answer = input ('Up? ')
-			            if answer not in ['n', '0']:
-				            bets.append(answer)
-		            elif len(bets)!=0:
-			            answer = input ('Max bet is {}. Shell or rise'.format (max(bets)))
-			            bets[player] = answer # как разобраться с зависимостью индекса Bets от вставок
-        '''
-        
         bets = []
         
         while let(set(bets)) != 1:
-            for player in range(len(self.players)):
-                if len(bets) == 0 or set(bets) == {0}:
-                    while True: #try-except cycle
-                        try:
-                            answer = input ('Игрок {}, делай свою ставку?! (0\n - отказаться от повышения ставки) '.format(player))
+            for player in self.players:
+                while True: #try-except check cycle.
+                    try:
+                        
+                        if len(bets) == 0 or set(bets) == {0}: #if nobody did bet
+                            answer = input ('Игрок {}:\nделай свою ставку?! (0/n - отказаться от повышения ставки) '.format(player))
                             if answer.lower() == '0', 'n':
                                 bets.append(0)
                             else:
                                 bets.append(int(answer))
-                        except ValueError:
-                            print ('Вы ввели не число')
-                            continue
-                        break
-                else:
-                    answer = input 
-                    
+                        
+                        else:
+                            while len(bets) < (self.players.index(player)+1):
+                                bets.append (0)
+                            
+                            answer = input ('Игрок {0}:\n Сделана ставка {1};\nу тебя в кошельке {2};\nТвоя ставка:{3};\nПоддерживай (введи сумму ставки), повышай или пасуй (введи 0/Пас): '.format(player, max(bets), player.account.how_much(), bets[(self.players.index(player)])))
+                            if int(answer) < max(bets) or player.account.is_enough(int(answer)) == False or answer == 'пас':
+                                print('Сыграл и проиграл! Еще повезет!')
+                                player.account.withdraw(bets[self.players.index(player)], bak) #Lose player bet go to bank
+                                bets.pop(self.players.index(player)) #Lose player bet delite
+                                self.players.pop(self.players.index(player)) #Lose player delite
+                            else:
+                                bets[self.players.index(player)] = int(answer)
+
+                    except ValueError:
+                        print ('Вы ввели не число')
+                        continue
+                    break    
+                     
         
         
         
         
         
-        
+        '''
         #ГОВНОКОД!!!
         is_bet_made = None
         bet = None
@@ -211,7 +195,7 @@ class War_Game ():
             
                 if is_bet_made == None: #exit while cycle.
                     old_bet = bet
-        
+        '''
         
         
         
