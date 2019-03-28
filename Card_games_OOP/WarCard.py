@@ -117,20 +117,20 @@ class War_Game ():
         self.deck.deal(self.players, per_hand = 1)
         for player in self.players: #Revers card. Переворачиваем карту рубашкой вверх. 
             player.flip_first_card()
-            player.account.withdraw(5, self.bank)
-        print ('Ставки сделаны Банк: {}'.format(self.bank.how_much()))
-        print ('\nКто рискнет повысить ставку?\n')#Место для повышения ставок
+            player.account.withdraw(1, self.bank)
+        print ('Ставки первого круга сделаны\nБанк: {}'.format(self.bank.how_much()))
+        print ('Кто рискнет повысить ставку?\n\n')#Место для повышения ставок
         
+        #bets up algorithm
         bets = []
-        
-        while let(set(bets)) != 1:
+        while len(set(bets)) != 1: 
             for player in self.players:
                 while True: #try-except check cycle.
                     try:
                         
                         if len(bets) == 0 or set(bets) == {0}: #if nobody did bet
-                            answer = input ('Игрок {}:\nделай свою ставку?! (0/n - отказаться от повышения ставки) '.format(player))
-                            if answer.lower() == '0', 'n':
+                            answer = input ('Игрок {0}:\nВ твоем кошельке {1};\nДелай свою ставку?! (0/n - отказаться от повышения ставки): '.format(player, player.account.how_much()))
+                            if answer.lower() in  ['0', 'n']:
                                 bets.append(0)
                             else:
                                 bets.append(int(answer))
@@ -139,77 +139,29 @@ class War_Game ():
                             while len(bets) < (self.players.index(player)+1):
                                 bets.append (0)
                             
-                            answer = input ('Игрок {0}:\n Сделана ставка {1};\nу тебя в кошельке {2};\nТвоя ставка:{3};\nПоддерживай (введи сумму ставки), повышай или пасуй (введи 0/Пас): '.format(player, max(bets), player.account.how_much(), bets[(self.players.index(player)])))
-                            if int(answer) < max(bets) or player.account.is_enough(int(answer)) == False or answer == 'пас':
-                                print('Сыграл и проиграл! Еще повезет!')
-                                player.account.withdraw(bets[self.players.index(player)], bak) #Lose player bet go to bank
-                                bets.pop(self.players.index(player)) #Lose player bet delite
-                                self.players.pop(self.players.index(player)) #Lose player delite
-                            else:
-                                bets[self.players.index(player)] = int(answer)
+                            if bets[self.players.index(player)] != max(bets): #Didn't ask player who hame max bet twice
+                            
+                                answer = input ('Игрок {0}:\nСделана ставка {1};\nу тебя в кошельке {2};\nТвоя ставка:{3};\nПоддерживай (введи сумму ставки), повышай или пасуй (введи 0/Пас): '.format(player, max(bets), player.account.how_much(), bets[self.players.index(player)]))
+                                if int(answer) < max(bets) or int(answer) <= player.account.how_much() and player.account.is_enough(int(answer)) == False or answer.lower() == 'пас':
+                                    print('Сыграл и проиграл! Еще повезет!')
+                                    player.account.withdraw(bets[self.players.index(player)], self.bank) #Lose player bet go to bank
+                                    bets.pop(self.players.index(player)) #Lose player bet delite
+                                    self.players.pop(self.players.index(player)) #Lose player delite
+                                elif int(answer) > player.account.how_much():
+                                    print ('Твоя ставка больше, чем количество монет в твоем кошельке.\nЖулик? Рискуй всем!')
+                                    answer = player.account.how_much()
+                                    bets[self.players.index(player)] = answer
+                                else:
+                                    bets[self.players.index(player)] = int(answer)
 
                     except ValueError:
                         print ('Вы ввели не число')
                         continue
                     break    
                      
-        
-        
-        
-        
-        
-        '''
-        #ГОВНОКОД!!!
-        is_bet_made = None
-        bet = None
-        old_bet = 0
-            
-        while old_bet != bet:    
-            
-                for player in self.players:
-                    if is_bet_made == None:
-                        answer = input ('Игрок {}, повышаем ставку на? (n - отказаться от повышения ставки) '.format(player))
-                        if  answer.lower() != 'n':
-                            try:
-                                bet = int (answer)
-                                player.account.withdraw(bet, self.bank) #А если не хватает денег?
-                                is_bet_made = True
-                            except ValueError:
-                                print ('Вы ввели не чило.')
-                           
-                                                        
-                   
-                    elif is_bet_made: 
-                        answer = int(input ('Игрок {0}, предыдущим игроком сделана ставка {1}, у вас в кошельке {2}, уравнивайте (добавьте к своей ставке {3} монеты) или повышайте на: '.format(player, bet, player.account.how_much(), (bet - old_bet)))) # не меняется ставка
-                        if answer < bet or player.account.is_enough(answer) == False:
-                            print('Вы ввели меньшую сумму или вам не хватает средств для поддержания ставки')
-                            self.players.pop(self.players.index(player))
-                        elif answer >= bet:
-                            player.account.withdraw(bet, self.bank)
-                            old_bet = bet
-                            bet = old_bet + answer
-                            
-       
-                    
-                  
-            
-                if is_bet_made == None: #exit while cycle.
-                    old_bet = bet
-        '''
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        for player in self.players: #add bets to the bank
+            player.account.withdraw(bets[self.players.index(player)], self.bank)
+
         print('\n$$$БАНК$$$\n{}\n'.format(self.bank.how_much()))
         for player in self.players:
             player.flip_first_card()
@@ -224,11 +176,9 @@ class War_Game ():
             if 1 < len(winner) and player in winner:
                player.push()
             elif player in winner:
-                self.bank.withdraw(self.bank.how_much(), player.account)
                 player.win()
-                print ('В его кошельке {} монет!'.format (player.account.how_much()))
-            else:
-                player.lose()            
+                print ('Его приз: {} монет!'.format (self.bank.how_much()))
+                self.bank.withdraw(self.bank.how_much(), player.account)           
         
         for player in self.players:
             player.clear()
@@ -250,11 +200,14 @@ def main ():
     
     names = []
     
-    try:
-        number = int(input('Сколько игроков играет?(2-6) '))
-    except ValueError:
-        print ('Вы ввели не число.')
-        number = 0
+    while:
+        try:
+            number = int(input('Сколько игроков играет?(2-6) '))
+        except ValueError:
+            print ('Вы ввели не число.')
+            continue
+        break
+    
     if 2 <= number <= 6: 
         for i in range(number):
             name = input('Введите имя игрока №{}: '.format(i+1))
