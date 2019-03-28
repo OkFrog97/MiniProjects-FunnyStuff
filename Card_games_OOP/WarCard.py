@@ -134,9 +134,48 @@ class War_Game ():
         
         
         
+        #ХЕРНЯ ЭТО ВCЕ, ТУТ ВОТ ПО-ЛУЧШЕ
+        
+        '''
+        >>> players = ['Pharhad', 'Anya', 'Miron']
+        >>> bets = []
+        >>> while len(set(bets))!=1 or len(set(bets))!=0:
+	            for player in range (len(players)):
+		            if len (bets) == 0:
+			            answer = input ('Up? ')
+			            if answer not in ['n', '0']:
+				            bets.append(answer)
+		            elif len(bets)!=0:
+			            answer = input ('Max bet is {}. Shell or rise'.format (max(bets)))
+			            bets[player] = answer # как разобраться с зависимостью индекса Bets от вставок
+        '''
+        
+        bets = []
+        
+        while let(set(bets)) != 1:
+            for player in range(len(self.players)):
+                if len(bets) == 0 or set(bets) == {0}:
+                    while True: #try-except cycle
+                        try:
+                            answer = input ('Игрок {}, делай свою ставку?! (0\n - отказаться от повышения ставки) '.format(player))
+                            if answer.lower() == '0', 'n':
+                                bets.append(0)
+                            else:
+                                bets.append(int(answer))
+                        except ValueError:
+                            print ('Вы ввели не число')
+                            continue
+                        break
+                else:
+                    answer = input 
+                    
         
         
         
+        
+        
+        
+        #ГОВНОКОД!!!
         is_bet_made = None
         bet = None
         old_bet = 0
@@ -144,7 +183,6 @@ class War_Game ():
         while old_bet != bet:    
             
                 for player in self.players:
-                  
                     if is_bet_made == None:
                         answer = input ('Игрок {}, повышаем ставку на? (n - отказаться от повышения ставки) '.format(player))
                         if  answer.lower() != 'n':
@@ -158,17 +196,16 @@ class War_Game ():
                                                         
                    
                     elif is_bet_made: 
-                        answer = int(input ('Игрок {0}, предыдущим игроком сделана ставка {1}, введите ее сумму или повышайте.'.format(player, bet))) # не меняется ставка
+                        answer = int(input ('Игрок {0}, предыдущим игроком сделана ставка {1}, у вас в кошельке {2}, уравнивайте (добавьте к своей ставке {3} монеты) или повышайте на: '.format(player, bet, player.account.how_much(), (bet - old_bet)))) # не меняется ставка
                         if answer < bet or player.account.is_enough(answer) == False:
                             print('Вы ввели меньшую сумму или вам не хватает средств для поддержания ставки')
-                            player.lose() #player kick again
                             self.players.pop(self.players.index(player))
-                        elif answer == bet:
+                        elif answer >= bet:
                             player.account.withdraw(bet, self.bank)
-                            bet, answer = old_bet, bet
-                        elif bet > answer:
-                            bet, answer = old_bet, bet
-                            player.account.withdraw(bet, self.bank)
+                            old_bet = bet
+                            bet = old_bet + answer
+                            
+       
                     
                   
             
