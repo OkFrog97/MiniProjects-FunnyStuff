@@ -19,4 +19,4 @@ def diamond (n):
         return answer
      
      
- diamond2 = lambda n: None if n <= 0 else ''.join([(" "*((n-i)//2) + i*'*' + '\n') for i in range (1,n+2,2)]+[(" "*((n-i)//2) + i*'*'+'\n') for i in range (n-2,0,-2)])
+ diamond2 = lambda n: None if n <= 2 else ''.join([(" "*((n-i)//2) + i*'*' + '\n') for i in range (1,n+2,2)]+[(" "*((n-i)//2) + i*'*'+'\n') for i in range (n-2,0,-2)])
