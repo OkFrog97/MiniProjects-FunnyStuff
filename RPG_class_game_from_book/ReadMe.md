@@ -6,4 +6,4 @@ Start Game.py for playing/
 
 Versions:
 
-v.0.0 - add basic classes.
+v.0.1 - add basic fuction: walk in rooms.
