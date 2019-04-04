@@ -16,5 +16,21 @@ app.grid()
 lbl = Label(app, text ="Клянусь своим дуратским лбом!") #Creating МЕТКА inside frame
 lbl.grid()
 
+#Button
+bttn1 = Button (app, text = "Мирон - славный котомон!")
+bttn1.grid()
+
+#Second Buttom
+bttn2 = Button ()
+bttn2.grid()
+bttn2.configure(text = "Я другая кнопка")
+
+#Tried button
+bttn3 = Button()
+bttn3.grid()
+bttn3["text"] = "И я, и я, и я того же мнения!"
+
+
+
 #Event-loop star
 root.mainloop()
