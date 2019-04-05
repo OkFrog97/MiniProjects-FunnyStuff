@@ -9,8 +9,13 @@ class Application (Frame):
     GUI-application with 3 buttoms.
     '''
     def _init__(self, master):
-        '''Init frame'''
+        '''Init frame
         super(Application, self).__init__(master)
+        self.grid()
+        self.create_widgets()
+        '''
+        """ Initialize the Frame. """
+        super(Application, self).__init__(master)    
         self.grid()
         self.create_widgets()
     
@@ -30,17 +35,13 @@ class Application (Frame):
         #Tried button
         self.bttn3 = Button(self)
         self.bttn3.grid()
-        self.bttn3["text"] = "Один КОТ хорошо, а два - порванные обои."
+        self.bttn3["text"] = "Один КОТ хорошо, а два - ободранные обои."
       
       
 #Programm body
 
-def main():
-    root = Tk()
-    root.title('Бесполезные КОТнопки-2')
-    root.geometry('400x200')
-    app = Application(root)
-    root.mainloop()
-    
-if __name__ == '__main__':
-    main()
+root = Tk()
+root.title("Lazy Buttons 2")
+root.geometry("200x85")
+app = Application(root)
+root.mainloop()
