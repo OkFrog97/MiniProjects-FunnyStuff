@@ -8,16 +8,16 @@ class Application(Frame):
         self.create_widget()
     def create_widget(self):
         self.bttn = Button (self)
-        self.bttn["text"] = ["Количество щелчков: 0"]
+        self.bttn["text"] = "Количество щелчков: 0"
         self.bttn["command"] = self.update_count
         self.bttn.grid()
-    def update_Count(self):
+    def update_count(self):
         self.bttn_clicks += 1
-        self.bttn["text"] = "Количество щелчков: {}".formta(self.bttn_clicks)
+        self.bttn["text"] = "Количество щелчков: {}".format(self.bttn_clicks)
 
         
 root = Tk()
 root.title("Счетчник щелчков")
-root.geometry("200x50")
+root.geometry("400x50")
 app = Application(root)
 root.mainloop()
