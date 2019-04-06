@@ -9,9 +9,9 @@ class Application(Frame):
     def create_widget(self):
         self.bttn = Button (self)
         self.bttn["text"] = "Количество щелчков: 0"
-        self.bttn["command"] = self.update_count
+        self.bttn["command"] = self.update_count #событие, вызывающее функцию
         self.bttn.grid()
-    def update_count(self):
+    def update_count(self): #Функция, меняющая значение счетчика и выводящая на экран(в кнопку) текст с новым значением.
         self.bttn_clicks += 1
         self.bttn["text"] = "Количество щелчков: {}".format(self.bttn_clicks)
 
