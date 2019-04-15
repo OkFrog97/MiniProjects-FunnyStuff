@@ -10,31 +10,37 @@ class Application (Frame):
         
     def create_widgets(self):
         Label(self, text = "Укажите ваши любимые жанры кино").grid(row = 0, column = 0, sticky = W)
-        Label (self, text = "Выберите все, что вам по вкусу").grid(row = 1, column = 0, sticky = W)
-        #comedy
-        self.likes_comedy = BooleanVar()
-        Checkbutton(self, text = "Комедия", variable=self.likes_comedy, command = self.update_text).grid(row = 2, column = 0, stick = W)
-        #horrors
-        self.likes_horrors = BooleanVar()
-        Checkbutton(self, text = "Ужасы", variable=self.likes_horrors, command = self.update_text).grid(row = 3, column = 0, stick = W)
-        #romatic
-        self.likes_romantic = BooleanVar()
-        Checkbutton(self, text = "Фильмы о любви", variable=self.likes_romantic, command = self.update_text).grid(row = 4, column = 0, stick = W)
-        #text area
-        self.result_text = Text (self, width = 40, height = 5, wrap = WORD)
-        self.result_text.grid(row = 5, column = 0, stick = W)
-    
+        Label (self, text = "Выберите один").grid(row = 1, column = 0, sticky = W)
+        salf.favorite = StringVar ()
+        self.favorite.sat(None)
+        Radiobutton(self,
+                    text = "Comedy",
+                    variable = salf.favorite,
+                    value = "Comedy"
+                    command = self.update_text
+                    ).grid(row=2, column=0, sticky = W)
+        Radiobutton(self,
+                    text = "Horror",
+                    variable = salf.favorite,
+                    value = "Horror"
+                    command = self.update_text
+                    ).grid(row=3, column=0, sticky = W)
+        Radiobutton(self,
+                    text = "Romantic",
+                    variable = salf.favorite,
+                    value = "Romantic"
+                    command = self.update_text
+                    ).grid(row=4, column=0, sticky = W)
+        self.result_txt = Text(self, width = 40, height = 5, wrap = WORD)
+        self.result_txt.grid(row=5, column=0, columnspan = 3)
+        
     def update_text(self):
-        likes = ""
-        if self.likes_comedy.get():
-            likes += "Вы смеетесь над странными шутками Эдди Мерфи.\n"
-        if self.likes_horrors.get():
-            likes += "Вам нравится, когда КРОВЬ КИШКИ РАСПИДОРАИСЛО!!!!\n"
-        if self.likes_romantic.get():
-            likes += "Где же мистер Дарси???\n"
+        message = "Your favorite films is {}".format(self.favorite.get())
         self.result_text.delete(0.0, END)
         self.result_text.insert(0.0, likes)
 
+
+        
 def main ():
     root = Tk()
     root.title('QWERTY')
