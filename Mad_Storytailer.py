@@ -34,6 +34,10 @@ class Application (Frame):
                 ).grid(row = 3, column = 0, sticky = W)
         self.verb_ent = Entry(self)
         self.verb_ent.grid(row = 3,column = 1, sticky = W)
+        #prilogatelnoe, ept
+        Label   (self,
+                text = "Выбирте прилагательное."
+                ).grid(row=4,column = 0, sticky = W)
 
 
         
