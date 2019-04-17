@@ -39,23 +39,23 @@ class Application (Frame):
                 text = "Выбирте прилагательное."
                 ).grid(row = 4,column = 0, sticky = W)
         #Нетерпеливый
-        self.is_itchy = BoolenVar()
-        CheckButton(self,
+        self.is_itchy = BooleanVar()
+        Checkbutton(self,
                     text = "Нетерпеливый",
                     variable = self.is_itchy
                     ).grid(row = 4, column = 1, sticky = W)
         #Радостный
-        self.is_joyous = BoolenVar()
-        CheckButton(self,
+        self.is_joyous = BooleanVar()
+        Checkbutton(self,
                     text = "Радостный",
                     variable = self.is_joyous
-                    ).grid(row = 4, column = 1, sticky = W)
+                    ).grid(row = 4, column = 2, sticky = W)
         #Пронизывающий
-        self.is_electric = BoolenVar()
-        CheckButton(self,
+        self.is_electric = BooleanVar()
+        Checkbutton(self,
                     text = "Пронизывающий",
                     variable = self.is_electric
-                    ).grid(row = 4, column = 1, sticky = W)
+                    ).grid(row = 4, column = 3, sticky = W)
         #body parts
         Label   (self,
                 text = "Тела кусок выбери ты: "
@@ -68,7 +68,7 @@ class Application (Frame):
         for part in body_parts:
             Radiobutton(self,
                         text = part,
-                        variable = self.body_parts
+                        variable = self.body_parts,
                         value = part
                         ).grid(row = 5, column = column, sticky = W)
             column += 1
