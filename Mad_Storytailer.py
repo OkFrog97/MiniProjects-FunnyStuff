@@ -37,9 +37,25 @@ class Application (Frame):
         #prilogatelnoe, ept
         Label   (self,
                 text = "Выбирте прилагательное."
-                ).grid(row=4,column = 0, sticky = W)
-
-
+                ).grid(row = 4,column = 0, sticky = W)
+        #Нетерпеливый
+        self.is_itchy = BoolenVar()
+        CheckButton(self,
+                    text = "Нетерпеливый",
+                    variable = self.is_itchy
+                    ).grid(row = 4, column = 1, sticky = W)
+        #Радостный
+        self.is_joyous = BoolenVar()
+        CheckButton(self,
+                    text = "Радостный",
+                    variable = self.is_joyous
+                    ).grid(row = 4, column = 1, sticky = W)
+        #Пронизывающий
+        self.is_electric = BoolenVar()
+        CheckButton(self,
+                    text = "Пронизывающий",
+                    variable = self.is_electric
+                    ).grid(row = 4, column = 1, sticky = W)
         
         
         
