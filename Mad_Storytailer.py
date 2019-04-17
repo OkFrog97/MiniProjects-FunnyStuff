@@ -56,7 +56,32 @@ class Application (Frame):
                     text = "Пронизывающий",
                     variable = self.is_electric
                     ).grid(row = 4, column = 1, sticky = W)
-        
+        #body parts
+        Label   (self,
+                text = "Тела кусок выбери ты: "
+                ).grid(row = 5, column = 0, sticky = W)
+        self.body_parts = StringVar ()
+        self.body_parts.set(None)
+        #body_parts switcher
+        body_parts = ["Пупок","Большой палец ноги","Продолговатый мозг"]
+        column = 1
+        for part in body_parts:
+            Radiobutton(self,
+                        text = part,
+                        variable = self.body_parts
+                        value = part
+                        ).grid(row = 5, column = column, sticky = W)
+            column += 1
+        #Enter data and get story
+        Button(self,
+               text = "Получить рассказ",
+               command = self.tell_story
+               ).grid(row = 6, column = 0, sticky = W)
+        self.story_text = Text (self, width = 75, height = 10, wrap = WORD)
+        self.story_text.grid(row = 7, column = 0, columnspan = 4)
+    
+    def tell_story(self):
+        pass
         
         
         
