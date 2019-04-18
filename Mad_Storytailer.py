@@ -81,8 +81,24 @@ class Application (Frame):
         self.story_text.grid(row = 7, column = 0, columnspan = 4)
     
     def tell_story(self):
-        pass
+        '''write story in text area'''
+        person = self.person_ent.get()
+        noun = self.noun.get()
+        verb = self.verb.get()
+        abjectives = ''
+        if self.is_itchy.get():
+            abjectives += "Нетерпеливый NuRgZzliEV"
+        elif is_joyous.get():
+            abjectives += "Радостный"
+        elif is_electric.get():
+            abjectives += "Пронизывающий"
+        body_part = self.body_part
         
+        #Creating the story
+        story = "Знаменитый путешественник {0} уже отчаялся зваершить SICHIK своей жизни - город, в котором обитали STRASHNII {1}. Однажды они столкнулись лицом к лицу и мощное {2} отразилось на лице {0}. Если задумали {3}, делайте осторожно".format(person, noun.title(), abjectives, verb)
+        
+        self.story_text.delete(0.0, END)
+        self.story_text.insert(0.0, story)
         
         
         
