@@ -83,8 +83,8 @@ class Application (Frame):
     def tell_story(self):
         '''write story in text area'''
         person = self.person_ent.get()
-        noun = self.noun.get()
-        verb = self.verb.get()
+        noun = self.noun_ent.get()
+        verb = self.verb_ent.get()
         abjectives = ''
         if self.is_itchy.get():
             abjectives += "Нетерпеливый NuRgZzliEV"
@@ -92,31 +92,14 @@ class Application (Frame):
             abjectives += "Радостный"
         elif is_electric.get():
             abjectives += "Пронизывающий"
-        body_part = self.body_part
+        body_part = self.body_parts
         
         #Creating the story
-        story = "Знаменитый путешественник {0} уже отчаялся зваершить SICHIK своей жизни - город, в котором обитали STRASHNII {1}. Однажды они столкнулись лицом к лицу и мощное {2} отразилось на лице {0}. Если задумали {3}, делайте осторожно".format(person, noun.title(), abjectives, verb)
+        story = "Знаменитый путешественник {0} уже отчаялся зваершить SICHIK своей жизни - город, в котором обитали STRASHNII {1}. Однажды они столкнулись лицом к лицу и мощное {2} отразилось на лице {0}. Если задумали {3}, делайте осторожно, что бы не оторвать {4}.".format(person, noun.title(), abjectives, verb, body_part)
         
         self.story_text.delete(0.0, END)
         self.story_text.insert(0.0, story)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
 def main ():
     root = Tk()
