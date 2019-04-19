@@ -44,18 +44,18 @@ class Application (Frame):
         import random  
         
         the_number = random.randint (1, 10)
-        guess = self.user_ent(get)
+        guess = int(self.user_ent.get())
         
-        while guess != the_number:
-            if guess > the_number:
-                answer = "Меньше"
-                say_answer(answer)
-            else:
-                answer = "Больше"
-                say_answer(answer)
         
-        answer = "Ты угадал! Загаданное число - {}.".format(the_number)
-        say_answer(answer)
+        if guess > the_number:
+            answer = "Меньше"
+            self.say_answer(answer)
+        elif guess < the_number:
+            answer = "Больше"
+            self.say_answer(answer)
+        else:
+            answer = "Ты угадал! Загаданное число - {}.".format(the_number)
+            self.say_answer(answer)
   
 
 
