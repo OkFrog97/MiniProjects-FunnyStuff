@@ -7,9 +7,13 @@ from tkinter import *
 class Application (Frame):
     '''GUI-applocation who's play in number games'''
     def __init__(self, master):
+        
         super(Application, self).__init__(master)
         self.grid()
         self.creat_widgets()
+        
+        import random
+        self.number = random.randint(1, 10)
     
     def creat_widgets (self):
         '''Creating widgets.'''
@@ -41,11 +45,9 @@ class Application (Frame):
         '''
         Pick number function.
         '''
-        import random  
-        
-        the_number = random.randint (1, 10)
+
+        the_number = self.number
         guess = int(self.user_ent.get())
-        
         
         if guess > the_number:
             answer = "Меньше"
