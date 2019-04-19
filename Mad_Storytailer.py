@@ -92,7 +92,7 @@ class Application (Frame):
             abjectives += "Радостный"
         elif is_electric.get():
             abjectives += "Пронизывающий"
-        body_part = self.body_parts
+        body_part = self.body_parts.get()
         
         #Creating the story
         story = "Знаменитый путешественник {0} уже отчаялся зваершить SICHIK своей жизни - город, в котором обитали STRASHNII {1}. Однажды они столкнулись лицом к лицу и мощное {2} отразилось на лице {0}. Если задумали {3}, делайте осторожно, что бы не оторвать {4}.".format(person, noun.title(), abjectives, verb, body_part)
