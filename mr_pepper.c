@@ -2,15 +2,15 @@
 
 int main () {
     int i;
-    for (i= 0, i = 10, i ++)
+    for (i= 0; i = 10; i ++);
     {
         if (i == 2)
         {
-            printf('I am hot pepper');
+            printf("I am hot pepper");
         }            
-        else:
+        else
         {
-            printf('Hot hot babby');
+            printf("Hot hot babby");
         }
     }
     return 0;
