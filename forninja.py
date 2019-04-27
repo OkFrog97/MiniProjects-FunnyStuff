@@ -1,0 +1,1 @@
+tickets = lambda people: "YES" if (people.count(50)<= people.count(25) or people.count(50) == 0) and ( ((people.count(25) - people.count(50))+people.count(50)>= people.count(100) and people.count(50) != 0) or ((people.count(25)-people.count(50)) >= people.count(100)*3) or people.count(100) == 0) else "NO"
