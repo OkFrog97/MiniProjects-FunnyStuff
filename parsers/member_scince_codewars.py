@@ -1,6 +1,15 @@
 def get_member_sience(username):
    '''
    Return since data of member connectione to Codewars.
+   > Usernames: Fred, John, Michel.
+   > get_member_sience (Fred)
+   > Oct 2018
+   >
+   > get_member_sience (John)
+   > Jun 2017
+   >
+   > get_member_sience (Michel)
+   > September 2015
    '''
    #import modules
    import requests
