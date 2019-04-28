@@ -1,4 +1,4 @@
-def get_member_sience(username):
+def get_member_since(username):
     '''
     Return since data of member connectione to Codewars.
     > Usernames: Fred, John, Michel.
@@ -35,9 +35,9 @@ def get_member_sience(username):
     return reg_date[13:] #Return answer without "Member since:"
     
 def main ():
-    print (get_member_sience('VanillaColaKid'))
-    print (get_member_sience('jhoffner'))
-    print (get_member_sience('dpleshkov'))
+    print (get_member_since('VanillaColaKid'))
+    print (get_member_since('jhoffner'))
+    print (get_member_since('dpleshkov'))
     
 if __name__ == '__main__':
     main()
