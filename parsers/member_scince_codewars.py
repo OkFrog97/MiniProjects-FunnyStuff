@@ -27,11 +27,12 @@ def get_member_sience(username):
         return "Username wasn't registrated."
     
     #find connection date
-    reg_date = stat[3].getText()
-    
-    #sed answer
-    answer = reg_date
-    return answer
+    for i in range (len(stat)):
+        string_stat = stat[i].getText()
+        if 'Member' in string_stat:
+           reg_date = string_stat
+
+    return reg_date[13:] #Return answer without "Member since:"
     
 def main ():
     print (get_member_sience('VanillaColaKid'))
