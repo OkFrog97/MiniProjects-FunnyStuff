@@ -25,9 +25,17 @@ def get_member_sience(username):
     reg_date = stat[3].getText()
     
     #catch errors
-    if stat == None:
+    if stat == []:
         return "Username wasn't registrated."
    
     #sed answer
     answer = reg_date[13:]
     return answer
+    
+def main ():
+    print (get_member_sience(VanillaColaKid))
+    print (get_member_sience(jhoffner))
+    print (get_member_sience(dpleshkov))
+    
+if __name__ == '__main__':
+    main()
