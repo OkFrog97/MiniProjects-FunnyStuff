@@ -20,10 +20,14 @@ def get_member_sience(username):
    site = requests.get()
    tree_site = bs4.BeautifulSoup (site.text, "html.parser")
    
-   #catch errors
-   
    #find connection date
+   stat = tree_site.select('.stat-box .stat')
+   reg_date = stat[3].getText()
    
-   #sad answer
+   #catch errors
+   if stat == None:
+      return "Username wasn't registrated."
    
-   pass
+   #sed answer
+   answer = reg_date[13:]
+   return answer
