@@ -17,19 +17,20 @@ def get_member_sience(username):
     
     #get site and create tags tree
     username_path = "https://www.codewars.com/users/{}".format(username)
-    site = requests.get()
+    site = requests.get(username_path)
     tree_site = bs4.BeautifulSoup (site.text, "html.parser")
     
-    #find connection date
-    stat = tree_site.select('.stat-box .stat')
-    reg_date = stat[3].getText()
     
-    #catch errors
+    #find information and catch errors
+    stat = tree_site.select('.stat-box .stat')
     if stat == []:
         return "Username wasn't registrated."
-   
+    
+    #find connection date
+    reg_date = stat[3].getText()
+    
     #sed answer
-    answer = reg_date[13:]
+    answer = reg_date
     return answer
     
 def main ():
