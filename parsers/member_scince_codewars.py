@@ -33,9 +33,9 @@ def get_member_sience(username):
     return answer
     
 def main ():
-    print (get_member_sience(VanillaColaKid))
-    print (get_member_sience(jhoffner))
-    print (get_member_sience(dpleshkov))
+    print (get_member_sience('VanillaColaKid'))
+    print (get_member_sience('jhoffner'))
+    print (get_member_sience('dpleshkov'))
     
 if __name__ == '__main__':
     main()
