@@ -20,7 +20,6 @@ def get_member_since(username):
     site = requests.get(username_path)
     tree_site = bs4.BeautifulSoup (site.text, "html.parser")
     
-    
     #find information and catch errors
     stat = tree_site.select('.stat-box .stat')
     if stat == []:
@@ -33,11 +32,13 @@ def get_member_since(username):
            reg_date = string_stat
 
     return reg_date[13:] #Return answer without "Member since:"
-    
+
+
 def main ():
     print (get_member_since('VanillaColaKid'))
     print (get_member_since('jhoffner'))
     print (get_member_since('dpleshkov'))
-    
+
+
 if __name__ == '__main__':
     main()
