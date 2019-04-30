@@ -16,4 +16,5 @@ Example:
 >
 '''
 
-socks_finder=lambda basket:
+socks_finder=lambda basket: sum([basket.count(i)//2 for i in set(basket)])
+
