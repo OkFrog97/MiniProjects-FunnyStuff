@@ -9,3 +9,9 @@ def repeatedString(s, n):
             answer += 1
     
     return answer
+
+def main ():
+    print(repeatedString('abraca', 10))
+    
+if __name__ == "__main__":
+    main()
