@@ -1,0 +1,1 @@
+def repeatedString(s, n):
