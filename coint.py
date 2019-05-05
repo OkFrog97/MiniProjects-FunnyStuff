@@ -9,7 +9,7 @@ v. 0.4 test found summ of
 
 import random
 
-def coint_stat (count_stop): # Coint flip statistik function;
+def coint_stat (count_stop): # Coint flip statistik function; just new commit
     count = 0
     coint_orel = 0
     coint_reshka = 0
