@@ -6,7 +6,7 @@ This programm is parser for http://www.weblancer.net
 
 #import using libs
 import requests
-import bs4
+from bs4 import BeautifulSoup
 
 
 def get_html(url):
@@ -19,9 +19,12 @@ def get_html(url):
 def parser (html):
     '''
     Take html and return seatchng data.
+    html is raw html text.
     '''
-    soup = sp4.BeautifulSoup(html)
-
+    soup = BeautifulSoup(html)
+    #print(soup)
+    table = soup.find('____') # '____' is a tag in our site; class_ - tag class; ATTENTION! I must find tag and class for new weblancer interface!!!
+    print(table.prettify())
 
 
 
@@ -33,7 +36,7 @@ def parser (html):
 
 
 def main ():
-    pass
+    parser(get_html('http://www.yandex.ru'))
     
 if __name__ == "__main__":
     main ()
