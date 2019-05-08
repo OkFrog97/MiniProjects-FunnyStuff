@@ -23,7 +23,7 @@ def parser (html):
     '''
     soup = BeautifulSoup(html)
     #print(soup)
-    content = soup.find('div', class_='wrapper') # '____' is a tag in our site; class_ - tag class; ATTENTION! I must find tag and class for new weblancer interface!!!
+    content = soup.find('div', class_='cols_table') #.find find first entry of str in tags. I must test it on my own html code.
     print(content.prettify())
 
 
