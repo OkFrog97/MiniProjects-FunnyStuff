@@ -23,8 +23,8 @@ def parser (html):
     '''
     soup = BeautifulSoup(html)
     #print(soup)
-    table = soup.find('____') # '____' is a tag in our site; class_ - tag class; ATTENTION! I must find tag and class for new weblancer interface!!!
-    print(table.prettify())
+    content = soup.find('div', class_='wrapper') # '____' is a tag in our site; class_ - tag class; ATTENTION! I must find tag and class for new weblancer interface!!!
+    print(content.prettify())
 
 
 
@@ -36,7 +36,7 @@ def parser (html):
 
 
 def main ():
-    parser(get_html('http://www.yandex.ru'))
+    parser(get_html('http://www.weblancer.net/jobs'))
     
 if __name__ == "__main__":
     main ()
