@@ -23,7 +23,7 @@ def parser (html):
     '''
     soup = BeautifulSoup(html)
     #print(soup)
-    content = soup.find('div', class_='cols_table') #.find find first entry of str in tags. I must test it on my own html code.
+    content = soup.find('div', class_='cols_table') #.find find first entry of str in tags. I have tests. It is true.
     print(content.prettify())
 
 
