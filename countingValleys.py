@@ -2,30 +2,22 @@
 Task from hakkerrank.com
 '''
 
-def countingValleys(s): #missing n-argument!
-    #WRONG!
+def countingValleys(s):
     way = []
     seaLevel = 0
-    Valleys = 0
+    valleys = 0
     for i in s:
-        if i == "U": #and seaLevel < 0?
+        if i == "U":
             seaLevel+=1
             way.append(seaLevel)
         elif i == "D":
             seaLevel-=1
             way.append(seaLevel)
     
-    return way
-
-
-
-
-
-
-
-
-
-
+    for i in range(len(way)):
+        if way[i] == 0 and way[i-1] == -1:
+            valleys +=1    
+    return valleys
 
 def tests():
     s1 = ["D","D","U","U","U","U","D","D"]
