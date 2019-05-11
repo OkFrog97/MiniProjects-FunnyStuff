@@ -22,7 +22,7 @@ def countingValleys(s):
 def tests():
     s1 = ["D","D","U","U","U","U","D","D"]
     s2 = ["U","D","D","D","U","D","U","U"]    
-    print ('{} should be 2.'.format(countingValleys(s1)))
+    print ('{} should be 1.'.format(countingValleys(s1)))
     print ('{} should be 1.'.format(countingValleys(s2)))
 
 def main ():
