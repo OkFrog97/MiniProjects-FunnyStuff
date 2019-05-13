@@ -3,10 +3,14 @@ Sort the odd from codewars.com
 '''
 
 def sort_array(source_array):
-    pass
 
-
-
+    odd_indexes = []
+    
+    for i in range(len(source_array)):
+        if source_array[i]%2==1:
+            odd_indexes.append(i)
+    
+    print (odd_indexes)
 
 
 
