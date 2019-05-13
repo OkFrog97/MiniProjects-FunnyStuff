@@ -10,11 +10,14 @@ def sort_array(source_array):
         if source_array[i]%2==1:
             odd_indexes.append(i)
     
-    print (odd_indexes)
+    
+    N = len (odd_indexes)
+    for bypass in odd_indexes:
+        for k in odd_indexes[:len(odd_indexes)-1]:
+            if source_array[k] > source_array [k+1]:
+               source_array[k], source_array[k+1] = source_array[k+1], source_array[k]
 
-
-
-
+    return source_array
 
 
 
