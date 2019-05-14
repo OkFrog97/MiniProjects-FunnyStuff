@@ -15,20 +15,10 @@ def sort_array(source_array):
         for k in odd_indexes[:len(odd_indexes)-1]:
             if source_array[k] > source_array [k+1]:
                source_array[k], source_array[k+1] = source_array[k+1], source_array[k]
-               k, k+1 = k, k+1
+
                
     print(source_array)
     return source_array
-
-
-
-
-
-
-
-
-
-
 
 
 
