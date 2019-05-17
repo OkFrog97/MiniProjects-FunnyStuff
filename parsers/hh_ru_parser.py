@@ -10,7 +10,7 @@ def hh_parser(vacancy):
     
     headers = {"accept": "*/*",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132"}
-    url = "https://www.hh.ru/search/vacancy?area=72&clusters=true&enable_snippets=true&text={}&page=0".format(vacancy) #page=0 is the first page. (How parse all?)
+    url = "https://perm.hh.ru/search/vacancy?area=72&clusters=true&enable_snippets=true&text={}&page=0".format(vacancy) #page=0 is the first page. (How parse all?)
     
     session = requests.Session()
     request = session.get(url, headers= headers)
@@ -20,11 +20,23 @@ def hh_parser(vacancy):
     else:
         print(request.status_code)
         
+    soup = bs(request.content, "html.parser")
+    divs = soup.find_all("div", attrs={"data-qa":"vacancy-serp__vacancy"})
     
+    for div in divs:
+        title = div.find('a', attrs={"data-qa":"vacancy-serp__vacancy-title"}).text
+        href = div.find('a', attrs={"data-qa":"vacancy-serp__vacancy-title"})["href"]
+        company = div.find('a', attrs={"data-qa":"vacancy-serp__vacancy-employer"}).text
+
+
+
+
+
+
 
 
 def test():
-    vacancyes = ['юрист','javascript','python','sql','адвокат']
+    vacancyes = ['python'] #'javascript','юрист','sql','адвокат']
     for vacancy in vacancyes:
         hh_parser(vacancy)
 
