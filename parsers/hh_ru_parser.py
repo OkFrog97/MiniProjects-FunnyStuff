@@ -51,6 +51,7 @@ def hh_parser(vacancy):
         })
     return jobs
 
+
 def test():
     vacancyes = ['python', 'javascript','юрист','sql','адвокат']
     for vacancy in vacancyes:
