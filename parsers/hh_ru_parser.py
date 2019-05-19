@@ -38,17 +38,10 @@ def hh_parser(vacancy):
         text1 = div.find('div', attrs={"data-qa":"vacancy-serp__vacancy_snippet_responsibility"}).text
         text2 = div.find('div', attrs={"data-qa":"vacancy-serp__vacancy_snippet_requirement"}).text
         disctription = "{0}\n{1}".format(text1, text2)
-        
-        compensation = div.find('div'. attrs={"data-qa":"vacancy-serp__vacancy-compensation"}).text
-        
-        print (compensations)
-        
-        
-        
-        
-        
-        
-        
+        try:
+            compensation = div.find('div', attrs={"data-qa":"vacancy-serp__vacancy-compensation"}).text
+        except AttributeError:
+            compensation = "0"       
         jobs.append({
         "title":title,
         "compensation":compensation,
@@ -59,9 +52,9 @@ def hh_parser(vacancy):
     return jobs
 
 def test():
-    vacancyes = ['python'] #'javascript','юрист','sql','адвокат']
+    vacancyes = ['python', 'javascript','юрист','sql','адвокат']
     for vacancy in vacancyes:
-        print(hh_parser(vacancy))
+        print(hh_parser(vacancy)[0])
 
 def main():
     test()
