@@ -13,6 +13,7 @@ def hh_parser(vacancy):
     headers = {"accept": "*/*",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.132"}
     url = "https://perm.hh.ru/search/vacancy?area=72&clusters=true&enable_snippets=true&text={}&page=0".format(vacancy) #page=0 is the first page. (How parse all?)
+    jobs = []
     
     #make request
     session = requests.Session()
@@ -29,25 +30,38 @@ def hh_parser(vacancy):
     divs = soup.find_all("div", attrs={"data-qa":"vacancy-serp__vacancy"})
         
     #grab information
-    jobs = []
+   
     for div in divs:
         title = div.find('a', attrs={"data-qa":"vacancy-serp__vacancy-title"}).text
         href = div.find('a', attrs={"data-qa":"vacancy-serp__vacancy-title"})["href"]
         company = div.find('a', attrs={"data-qa":"vacancy-serp__vacancy-employer"}).text
-        text1 = div.find('div', attrs={"data-qa":"vacancy-serp__vacancy_snippet__resposibility"}).text
-        text2 = div.find('div', attrs={"data-qa":"vacancy-serp__vacancy_snippet__requirement"}).text
+        text1 = div.find('div', attrs={"data-qa":"vacancy-serp__vacancy_snippet_responsibility"}).text
+        text2 = div.find('div', attrs={"data-qa":"vacancy-serp__vacancy_snippet_requirement"}).text
         disctription = "{0}\n{1}".format(text1, text2)
-        jobs.append = ({
-        "Название":title,
-        "Ссылка":href,
-        "Компания":company,
-        "Описнаие вакансии":disctription})
-
+        
+        compensation = div.find('div'. attrs={"data-qa":"vacancy-serp__vacancy-compensation"}).text
+        
+        print (compensations)
+        
+        
+        
+        
+        
+        
+        
+        jobs.append({
+        "title":title,
+        "compensation":compensation,
+        "href":href,
+        "company":company,
+        "content":disctription
+        })
+    return jobs
 
 def test():
     vacancyes = ['python'] #'javascript','юрист','sql','адвокат']
     for vacancy in vacancyes:
-        hh_parser(vacancy)
+        print(hh_parser(vacancy))
 
 def main():
     test()
