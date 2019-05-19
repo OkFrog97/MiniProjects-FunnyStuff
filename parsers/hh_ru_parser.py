@@ -55,7 +55,7 @@ def hh_parser(vacancy):
 def test():
     vacancyes = ['python', 'javascript','юрист','sql','адвокат']
     for vacancy in vacancyes:
-        print(hh_parser(vacancy)[0])
+        print(hh_parser(vacancy)[0][1])
 
 def main():
     test()
