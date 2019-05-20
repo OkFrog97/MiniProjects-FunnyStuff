@@ -26,7 +26,7 @@ def hh_parser(vacancy):
         print(request.status_code)
         
     #make vacancy tree
-    soup = bs(request.content, "html.parser")
+    soup = bs(request.content, "lxml")
     divs = soup.find_all("div", attrs={"data-qa":"vacancy-serp__vacancy"})
         
     #grab information
