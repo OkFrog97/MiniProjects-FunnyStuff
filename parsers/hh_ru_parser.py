@@ -22,7 +22,7 @@ def hh_parser(vacancy):
     
     #chek answer
     if request.status_code == 200:
-        print("OK")
+        print("{}: OK".format(vacancy))
     else:
         return request.status_code
         
@@ -64,11 +64,33 @@ def hh_parser(vacancy):
             })
     return jobs
     
+def files_writer(jobs):
+    '''
+    write our vacancies in file.
+    '''
+    import csv
+    with open ("hh_ru_parsed_jobs.csv","w") as file:
+        a_pen=csv.writer(file)
+        a_pen.writerow(("Название вакансии","Компания","Ссылка","Оплата труда","Описание вакансии"))
+        for job in jobs:
+            a_pen.writerow((job["title"],job["company"],job["href"],job["compensation"],job["content"]))
+
 
 def test():
+    '''
+    Simple non-unit tests.
+    '''
+    
+    #Test case 1: parsing difference vacancies.
+    print ("__TEST CASE: FIND VECANCIES__")
     vacancyes = ['python', 'javascript','юрист','sql','адвокат']
     for vacancy in vacancyes:
-        print(hh_parser(vacancy)[0])
+        print(len(hh_parser(vacancy)))
+    
+    #Test case 2: write information about vacancies in file.
+    print("__TEST CASE: WRITE INFO IN FILE__")
+    files_writer(hh_parser("python"))
+    
 
 def main():
     test()
