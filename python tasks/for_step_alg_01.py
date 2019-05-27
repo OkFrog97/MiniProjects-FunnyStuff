@@ -1,7 +1,7 @@
 def checker():
     import math
     
-    n = 1000
+    n = 10000000
     
     solution = {
     'math.log(math.log(n, 2))':math.log(math.log(n, 2)),
@@ -14,14 +14,17 @@ def checker():
     '3 ** math.log(n, 2)':3 ** math.log(n, 2),
     'n ** 2':n ** 2,
     '7 ** (math.log(n, 2))':7 ** (math.log(n, 2)),
-    'math.log(n, 2) ** (math.log(n, 2))':math.log(n, 2) ** (math.log(n, 2)),
+    'math.log(n, 2) ** (math.log(n, 2))':math.log(n, 2) ** (math.log(n, 2))
+    }
+    '''
     'n ** (math.log(n, 2))':n ** (math.log(n, 2)),
     'n ** (math.sqrt(n))':n ** (math.sqrt(n)),
     '2 ** n':2 ** n,
     '4 ** n':4 ** n,
     '2 ** (3 * n)':2 ** (3 * n),
-    'math.factorial(n)':math.factorial(n)
-    }
+    'math.factorial(n)':math.factorial(n),
+    '''
+    
     
     for i in sorted(solution.items(), key= lambda x : x[1]):
         print (i)
