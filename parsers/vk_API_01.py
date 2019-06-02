@@ -3,7 +3,10 @@ Program for taking most interesting (more 500 likes) posts from FOOD PORN vk.com
 '''
 
 
-def vk_parser(vk_group="foodporn"):
+def vk_parser(vk_group="fit4life_official"):
+    '''
+    Return posts from vk.com group.
+    '''
     # import modules
     import requests
     from bs4 import BeautifulSoup as bs
@@ -14,31 +17,28 @@ def vk_parser(vk_group="foodporn"):
     offset = 0
     count = 100
     all_posts = []
-
-    # getting info from vk
     
-    while offset < 1000:
+    # getting data from vk
+    while offset < 100:
         response = requests.get("https://api.vk.com/method/wall.get", 
                                 params={"access_token":token,
                                         "version":version,
                                         "domain":vk_group,
                                         "count":count,
                                         "offset":offset})
-        data = response.json()["response"]["items"]
-        all_posts.extend(data)
-        offset += 100
     
-    print(all_posts)
+        data = response.json()['response']['items']
+        all_posts.extend(data)
+        offset += 10
     
 
 def tests():
     pass
-    
 
 
 def main():
     vk_parser()
-    
+
 
 if __name__ == "__main__":
     main()
