@@ -33,7 +33,6 @@ def vk_parser(vk_group="fit4life_official"):
                                         "count":count,
                                         "offset":offset})
         logging.debug("Response status: {}".format(response))
-        logging.debug("Response json: {}".format(response.json()))
         data = response.json()["response"]["items"]
         all_posts.extend(data)
         offset += 10
