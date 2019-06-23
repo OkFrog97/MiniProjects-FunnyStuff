@@ -4,11 +4,12 @@ def is_happy(ticket_num):
     left_side = 0
 
     for i in range(len(ticket_num)):
-        if i > 3:
+        if i < 3:
             left_side += int(ticket_num[i])
         else:
             right_side += int(ticket_num[i])
-
+    print(left_side)
+    print(right_side)
     if left_side == right_side:
         print("Счастливый")
     else:
@@ -18,7 +19,7 @@ def main():
     
     tickets = ["000000","000001","111111","090234","763196","123321"]
     for ticket in tickets:
-        print (tiket)
+        print (ticket)
         is_happy(ticket)
 
 if __name__ == "__main__":
