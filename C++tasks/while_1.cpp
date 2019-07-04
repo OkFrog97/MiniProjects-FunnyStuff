@@ -6,9 +6,9 @@ int main() {
   cin >> N;
   i = 1;
   
-  while (x<N){
+  while (x=<N){
       x = i*i;
-      if (x<N) {
+      if (x=<N) {
           cout << x << " ";
       }
       else {
