@@ -11,4 +11,3 @@ def stair(n):
             print()
 
 stair (num_step)
-dsaxz
