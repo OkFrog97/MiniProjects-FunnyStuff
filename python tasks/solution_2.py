@@ -8,6 +8,6 @@ def stair(n):
                 print (" ", end="")
             else:
                 print ("#", end="")
-            print()
+        print()
 
 stair (num_steps)
