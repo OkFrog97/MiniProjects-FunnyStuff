@@ -10,4 +10,4 @@ def stair(n):
                 print ("#", end="")
             print()
 
-stair (num_step)
+stair (num_steps)
