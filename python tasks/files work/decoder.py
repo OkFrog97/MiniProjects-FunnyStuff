@@ -4,7 +4,16 @@ def decode(dataset:str):
     >decode(a3B4f2)
     >aaaBBBBff
     '''
-    return "".join(dataset[i]*int(dataset[i+1]) for i in range(len(dataset)-1) if dataset[i].isalpha()) # if i not a number then char in next position(i+1) is a number
+    answer = ""
+    
+    for i in range(len(dataset)-1):
+        if dataset[i].isalpha():
+            if dataset[i+1].isdigit() and dataset[i+2].isdigit():
+                answer += dataset[i]*(int(dataset[i+1]+dataset[i+2]))
+            else:
+                answer += dataset[i]*int(dataset[i+1])
+    
+    return answer
 
 
 def main():
