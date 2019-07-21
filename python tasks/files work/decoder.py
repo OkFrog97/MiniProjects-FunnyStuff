@@ -4,36 +4,7 @@ def decode(dataset:str):
     >decode(a3B4f2)
     >aaaBBBBff
     '''
-    pass
-    
-    answer = ""
-    
-    for i in range(len(dataset)-1):
-        if dataset[i].isalpha():
-            answer += dataset[i]*int(dataset[i+1]
-    
-    return answer
-    
-    
-
-
-
-genome = input()+' '
-s = 0
-n=genome[0]
-for i in genome:       
-    if n!=i:
-        print(n + str(s), end = '')
-        s=0
-        n=i
-    s+=1
-
-
-
-
-
-
-
+    return "".join(dataset[i]*int(dataset[i+1]) for i in range(len(dataset)-1) if dataset[i].isalpha())
 
 
 def main():
@@ -43,6 +14,7 @@ def main():
     
     decoding_data = decode(dataset)
     
+    print(decoding_data)
     
 if __name__ == "__main__":
     main()
