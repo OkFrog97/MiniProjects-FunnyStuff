@@ -9,4 +9,3 @@ class test(unittest.TestCase):
 
 
 unittest.main()
-    

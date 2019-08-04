@@ -1,2 +1,2 @@
-def get_formated_name (first_name:str, last_name:str):
-    return "{0} {1}".format(first_name, last_name).title()
+def get_formated_name (first_name:str, last_name:str, second_name:str = ""):
+    return "{0} {1} {2}".format(first_name, second_name, last_name).title() if second_name else "{0} {1}".format(first_name, last_name).title()
