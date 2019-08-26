@@ -1,9 +1,22 @@
+from random import random
+
 class RandomIterator:
+    def __init__(self,k):
+        self.k = k
+        self.i = 0
+
     def __next__(self):
-        return 0
+        if self.i < self.k:
+            self.i += 1
+            return random()
+        else:
+            raise StopIteration
 
 def main ():
-    x = RandomIterator()
+    x = RandomIterator(3)
+    print(next(x))
+    print(next(x))
+    print(next(x))
     print(next(x))
 
 if __name__ == "__main__":
