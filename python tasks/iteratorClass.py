@@ -5,6 +5,9 @@ class RandomIterator:
         self.k = k
         self.i = 0
 
+    def __iter__(self):
+        return self
+
     def __next__(self):
         if self.i < self.k:
             self.i += 1
@@ -13,11 +16,8 @@ class RandomIterator:
             raise StopIteration
 
 def main ():
-    x = RandomIterator(3)
-    print(next(x))
-    print(next(x))
-    print(next(x))
-    print(next(x))
+    for x in RandomIterator(10):
+        print(x)
 
 if __name__ == "__main__":
     main()
