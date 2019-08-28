@@ -5,33 +5,38 @@ class multifilter:
 
     def judge_any(pos, neg):
         # допускает элемент, если его допускает хотя бы одна функция (pos >= 1)
-        return True if pos>=1
+        return pos >= 1
 
     def judge_all(pos, neg):
         # допускает элемент, если его допускают все функции (neg == 0)
-        return True if neg == 0
+        return neg == 0
 
     def __init__(self, iterable, *funcs, judge=judge_any):
         # iterable - исходная последовательность
         # funcs - допускающие функции
         # judge - решающая функция
-        self.iterable = interable
+        self.iterable = iterable
         self.funcs = funcs
         self.judge = judge
-        self.answer = []
+
+    def __next__(self):
+        pass
 
     def __iter__(self):
         # возвращает итератор по результирующей последовательности
-        for i in interable:
+        return self
+
+
+        for i in self.iterable:
             pos = 0
             neg = 0
             for func in self.funcs:
-                if func(self.iterable) == True:
+                if func(i) == True:
                     pos += 1
                 else:
                     neg += 1
             if self.judge(pos, neg) == True:
-                self.answer.append(i)
+                yelid i
 
 
 def test():
