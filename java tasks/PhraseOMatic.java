@@ -11,14 +11,14 @@ public class PhraseOMatic {
             String[] wordListThree = {"процесс","пункт разгрузки","талант","подход","тип структуры","портал","обзор","образец","пункт следования"};
             
             //find lenght of lists
-            int oneLenght = wordListOne.lenght;
-            int twoLenght = wordListTwo.lenght;
-            int threeLenght = wordListThree.lenght;
+            int oneLength = wordListOne.length;
+            int twoLength = wordListTwo.length;
+            int threeLength = wordListThree.length;
             
             //genetate random numbers
-            int rand1 = (int) (Math.random()*oneLenght);
-            int rand2 = (int) (Math.random()*twoLenght);
-            int rand3 = (int) (Math.random()*threeLenght);
+            int rand1 = (int) (Math.random()*oneLength);
+            int rand2 = (int) (Math.random()*twoLength);
+            int rand3 = (int) (Math.random()*threeLength);
             
             //make a phrase
             String phrase = wordListOne[rand1] + " " + wordListTwo[rand2] + " " + wordListThree[rand3];
