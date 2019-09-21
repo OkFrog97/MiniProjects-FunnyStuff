@@ -6,19 +6,19 @@ class Movie {
     int rating;
     
     // Movie_functions
-    voit playIt() {
-        System.out.println("Проигрывается фильм");
+    void playIt() {
+        System.out.println("Play films");
     }
 }
 
 class MovieTestDrive {
-    
-    Movie jocker = new Movie();
-    
-    jocker.title = "Jocker";
-    jocker.genre = "Fantastic";
-    jocker.rating = 10;
-    
-    jocker.playIt();
-    System.out.println(jocker.title,"/n", jocker.genre, "/n", jocker.rating);
+    public static void main (String[] arts){
+        Movie jocker = new Movie();
+        jocker.title = "Jocker"; 
+        jocker.genre = "Fantastic"; 
+        jocker.rating = 10;
+        
+        jocker.playIt();
+        System.out.println(jocker.title);
+    }
 }
