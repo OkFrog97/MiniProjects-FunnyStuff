@@ -6,12 +6,13 @@ class Dog {
     void bark() {
         System.out.println("Bow! WOw!");
     }
+}
 
 class DogTestDrive {
     public static void main(String[] args){
     // Проверочный код для класса DogTestDrive    
-        Dog bim = Dog();
-        d.size = 40;
-        s.bark();
+        Dog bim = new Dog();
+        bim.size = 40;
+        bim.bark();
     }
 }
