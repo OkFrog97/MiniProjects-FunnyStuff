@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Simple telegram bor, which repeat your message in telegram
 # Name: test_bot;
 # Username: test23092019_bot
@@ -6,8 +7,7 @@
 import setting
 import telebot
 
-# add token
-token = "942108158:AAEvqWvMWSmhBXks5s_n7La2npUnbZVr6ds"
+bot = telebot.TeleBot(setting.token)
 
 
 @bot.message_handler(content_types=["text"])
