@@ -5,8 +5,8 @@ class dogArr{
         
         dogArr [] d = new dogArr[3];
         
-        d[0] = dogArr();
-        d[1] = dogArr();
+        d[0] = new dogArr();
+        d[1] = new dogArr();
         d[0].name = "Fido";
         
         System.out.println(d[0]);
