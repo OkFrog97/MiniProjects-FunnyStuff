@@ -1,6 +1,6 @@
 <?php
 
-function strFinder ($array){
+function strFinder (array $array){
     /*
     This function return all string elements of given array.
     Code:
@@ -15,11 +15,24 @@ function strFinder ($array){
             )
     */
     
-    
-    
-    
-    
-    
+    $answr = array(); //contain string elements to return
+ 
     foreach ($array as $element) {
-        if is_string($element){
-            
+        if (is_string($element)){
+                $answr[] = $element;
+        }
+    }
+    
+    return $answr;
+}           
+
+/*
+function fnd($array) {
+  static $answ = array();
+  foreach ($array as $el) {
+      if (is_array($el)) fnd($array);
+      elseif (is_string($el)) $answ[] = $el;
+  }
+  return $answ;
+}
+*/
