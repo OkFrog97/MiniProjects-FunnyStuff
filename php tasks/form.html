@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+	    <meta charset="utf-8">
+	    <title>Form</title>
+    </head>
+
+    <body>
+        <h1>Входное задание для кандидатв на поток "бекенд"</h1>
+
+        <!--Form for first task: is_leap-->
+        <h2>Задача № 1:</h2>
+        <p>Является ли год високосным?</p>
+            <form name="numbers" id="numbers">
+                <p>Введите год: <input type="text" name="year" id="year"></p>
+                <p><input type="submit" id="btn" value="Submit"></p>
+            </form>
+
+        <!--Send var from form to php file-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function(){
+                jQuery("#btn").click(function() { 
+                    var val = $("#year").val(); // data from html form/
+                    $.ajax ({
+                        url: "/task1.php",
+                        data: {val:val}, // val for php
+                        success: function( result ) {
+                            alert( result );
+                            console.log( result );
+                            }
+                        });
+                    });
+                });
+        </script>
+
+    </body>
+</html>

@@ -25,14 +25,3 @@ function strFinder (array $array){
     
     return $answr;
 }           
-
-/*
-function fnd($array) {
-  static $answ = array();
-  foreach ($array as $el) {
-      if (is_array($el)) fnd($array);
-      elseif (is_string($el)) $answ[] = $el;
-  }
-  return $answ;
-}
-*/
