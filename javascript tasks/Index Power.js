@@ -5,3 +5,8 @@ function indexPower(array, n){
     }
     return -1;
 }
+
+
+function indexPower(array, n){
+    return (array[n]**n) ? array[n]**n : -1;
+}
