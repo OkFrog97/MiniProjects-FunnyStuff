@@ -1,9 +1,14 @@
 body {
 	font-family: Arial, Verdana, sans-serif;
+	background-color: rgb(200,200,200);
 }
 h1, h2 {
 	color: #ee3e80;
 }
-p{
+p {
 	color: #665547;
+}
+
+#top {
+	color: #ee4e43;
 }
