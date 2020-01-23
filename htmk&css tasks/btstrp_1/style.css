@@ -8,5 +8,14 @@ body {
 }
 
 .container {
-	border: 5px solid #2d508f;
+}
+
+.c1 {
+	background-color: #CCFFCC;
+}
+.c2 {
+	background-color: #99FF99;
+}
+.c3 {
+	background-color: #66FF99;
 }
